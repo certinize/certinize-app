@@ -1,9 +1,10 @@
+import { GATEWAY_URL } from "../../api";
 import "./SideNavBar.css";
 import React, { useState } from "react";
 
 const SideNavBar = () => {
+  console.log(`GATEWAY_URL: ${GATEWAY_URL}`);
   const [isExpanded, setExpendState] = useState(false);
-
   const menuItems = [
     {
       text: "Certificates",
