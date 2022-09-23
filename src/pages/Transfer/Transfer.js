@@ -1,9 +1,12 @@
 import React, {  } from "react";
 import "./Transfer.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import Navbar from "../../components/NavBar/Navbar";
 const TransferFile = () => {
+    
 	return (
-        <div className="body">
+        <div>
+            <div className="body">
             <div className="title">
                 <p>Distribute Certificate </p>
             </div>
@@ -27,8 +30,8 @@ const TransferFile = () => {
                             
                         </div>
                     </div>
-                    <div className="button">
-                        <input className="submit"  type="submit" name="" value="Add Recipient" />
+                    <div className="submit">
+                        <input className="btnSubmit"  type="submit" name="" value="Add Recipient" />
                     </div>
                 
                 </form>
@@ -36,6 +39,7 @@ const TransferFile = () => {
                 <div className="user-table">
                     <table className="table table-borderless table-hover table-responsive">
                         <thead>
+                            {/* Table Headers */}
                             <tr>
                                 <th><p>#</p></th>
                                 <th><p>Last Name</p></th>
@@ -46,6 +50,7 @@ const TransferFile = () => {
                             </tr>
                         </thead>
                         <tbody>
+                            {/* Table cell for Row 1 */}
                             <tr>
                                 <td>1</td>
                                 <td>Dela Cruz</td>
@@ -54,6 +59,7 @@ const TransferFile = () => {
                                 <td>Jr.</td>
                                 <td>B7KNk9UWUGjg89NrmuCvuzNc9dNrmQYCQtcQB525a8HU</td>
                             </tr>
+                            {/* Table cell for Row 2 */}
                             <tr>
                                 <td>2</td>
                                 <td>Manrique</td>
@@ -62,6 +68,7 @@ const TransferFile = () => {
                                 <td></td>
                                 <td>B7KNk9UWUGjg89NrmuCvuzNc9dNrmQYCQtcQB525a8HU</td>
                             </tr>
+                            {/* Table cell for Row 3 */}
                             <tr>
                                 <td>3</td>
                                 <td>Zaracena</td>
@@ -89,10 +96,18 @@ const TransferFile = () => {
                         </tbody>
                     </table>
                 </div>
+
+                {/* Navigation Buttons */}
+                <div className="buttonSet">
+                    <button className="button ctn" type="button">Continue</button>
+                    <button  className="button cancel" type="button">Cancel</button>
+                </div>
             </div>
-            <br/>
+
 
         </div>
+        </div>
+        
 	);
 };
 
