@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Lato&family=Montserrat:ital,wght@0,300;0,400;0,700;1,700&family=Plus+Jakarta+Sans:ital,wght@0,700;1,400&family=Poppins:ital,wght@0,400;0,600;0,700;1,300;1,600;1,700&family=Ubuntu&family=Work+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.body{
+    padding: 10px;
+    color: #0D4B65;
+}
+.title{
+    margin-left: 25px;
+    font-size: 45px;
+    color: #0D4B65;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: uppercase;
+}
+form{
+    width: 100%;
+    margin-top: 20px;
+}
+label, input{
+    padding: 5px;
+    margin: 20px;
+}
+input{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.MI{
+    width: 6%;
+}
+label{
+    font-size: 17px;
+}
+.bc{
+    width: 70%;
+}
+.button{
+    margin: 20px;
+}
+input[type=submit] {
+    text-align: center;
+    background-color: #1A799D;
+    color: white;
+    padding: 14px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.user-table{
+    margin-top: 20px;
+    align-content: center;
+    border: solid 1px #0D4B65;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 12px 15px;
+}
+table{
+    table-layout: auto;
+    width: 100%;
+    align-content: center;
+}
+th{
+    color: #0D4B65;
+}
+table p{
+    font-weight: 100;
+    font-style: italic;
+    font-size: 16px;
+}
+td{
+    color: #0D4B65;
+}

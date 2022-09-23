@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav{
+    color: white;
+    background-color: #1C3843;
+}
+.nav-header{
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo{
+    height: auto;
+    width: 40px;
+}
+.certinize{
+    font-size: 27px;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+li{
+    float: right;
+    padding: 20px;
+}
+li a{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 16px;
+}
+.icon{
+    color: white;
+
+}
