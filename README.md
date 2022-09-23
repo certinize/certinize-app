@@ -28,6 +28,8 @@ Used for Icon stylesheet
 npm install react-icons --save
 ```
 ## Initiating Project
+Enter command inside the react project folder
+*Note: The project will not start without node module dependencies*
 ```
 npm start
 ```
