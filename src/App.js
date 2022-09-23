@@ -1,9 +1,14 @@
 import "./App.css";
-import SideNavBar from "./components/SideNavBar/SideNavBar";
 import React from "react";
-
+import TransferFile from "./pages/Transfer/Transfer";
+import Navbar from "./components/NavBar/Navbar";
 function App() {
-  return <SideNavBar />;
+  return (
+    <div>
+      <Navbar/>
+      <TransferFile/>
+    </div>
+  );
 }
 
 export default App;
