@@ -10,6 +10,10 @@ npm install
 ```
 #### Bootstrap CDN/CSS
 Used for standard HTML and CSS layouts.
+- Table Layout
+- Grid Layout
+- Component Layout
+- Flexbox Layout
 ```
 npm install react-bootstrap bootstrap
 ```
