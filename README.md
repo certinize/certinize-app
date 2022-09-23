@@ -2,7 +2,7 @@
 This is the official Certinize frontend repository including the web components, pages, and other features.
 
 
-## Noted commands for frontend CSS and module
+## Installation
 #### Node Module
 React node module to initiate project
 ```
