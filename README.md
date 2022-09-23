@@ -1,6 +1,10 @@
 # Certinize App
 This is the official Certinize frontend repository including the web components, pages, and other features.
-
+#### Constructed using:
+- Javascript
+- Hypertext Markup Language
+- Cascading Stylesheet
+- Bootstrap
 
 ## Installation
 #### Node Module
