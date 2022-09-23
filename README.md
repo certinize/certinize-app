@@ -8,6 +8,11 @@ React node module to initiate project
 ```
 npm install
 ```
+#### React Hooks
+For use state functions
+```
+npm install react-hooks
+```
 #### Bootstrap CDN/CSS
 Used for standard HTML and CSS layouts.
 - Table Layout
@@ -21,4 +26,8 @@ npm install react-bootstrap bootstrap
 Used for Icon stylesheet
 ```
 npm install react-icons --save
+```
+## Initiating Project
+```
+npm start
 ```
