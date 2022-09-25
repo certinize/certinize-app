@@ -39,6 +39,16 @@
     transition: 0.4s;
 }
 
+/* vertically and horizontally center content */
+/* max width and height */
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
 .success-box {
     margin-top: 5%;
     display: flex;
