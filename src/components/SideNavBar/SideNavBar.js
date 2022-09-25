@@ -1,8 +1,9 @@
 import { GATEWAY_URL } from "../../api";
 import "./SideNavBar.css";
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 
-const SideNavBar = () => {
+const SideNavBar = (props) => {
   console.log(`GATEWAY_URL: ${GATEWAY_URL}`);
   const [isExpanded, setExpendState] = useState(false);
   const menuItems = [
@@ -51,7 +52,10 @@ const SideNavBar = () => {
             className={
               isExpanded ? "hamburger hamburger-in" : "hamburger hamburger-out"
             }
-            onClick={() => setExpendState(!isExpanded)}
+            onClick={() => {
+              props.setExpanded(!isExpanded);
+              setExpendState(!isExpanded);
+            }}
           >
             <span></span>
             <span></span>
@@ -86,6 +90,10 @@ const SideNavBar = () => {
       </div>
     </div>
   );
+};
+
+SideNavBar.propTypes = {
+  setExpanded: PropTypes.func.isRequired,
 };
 
 export default SideNavBar;

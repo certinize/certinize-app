@@ -6,21 +6,37 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* page-container, align items as columns */
 .page-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 100vh;
     width: 100vw;
 }
 
-.title {
-    font-size: 45px;
-    color: #0D4B65;
-    font-weight: bold;
-    font-style: italic;
-    text-transform: uppercase;
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Calc values are based on the width of the SideNavBar */
+/* We have to add a transition property here to slow things down */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
+    width: calc(100vw - 300px);
+    transition: 0.4s;
+}
+
+.main-content-NX {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    width: calc(100vw - 85px);
+    transition: 0.4s;
 }
 
 /* vertically and horizontally center content */
