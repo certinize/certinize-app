@@ -4,9 +4,8 @@
 	background-color: #1C3843;
 	width: 300px;
 	height: 100vh;
-	position: fixed;
+	position: relative;
 	color: var(--light);
-
 	transition: 0.4s;
 }
 
