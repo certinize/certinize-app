@@ -80,9 +80,7 @@ const SideNavBar = () => {
               alt=""
               srcSet=""
             />
-            <div className="nav-footer-info">
-              <p className="nav-footer-user-name">Certinize</p>
-            </div>
+            <p className="nav-footer-user-name">Certinize</p>
           </div>
         )}
       </div>

@@ -21,6 +21,7 @@
 .nav-footer {
 	/* border: 2px solid white; */
 	display: grid;
+	align-items: center;
 }
 
 .nav-heading {
@@ -42,9 +43,14 @@
 
 .user-profile {
 	color: #ffff;
-	display: inline-block;
-	justify-content: center;
 	margin: 0 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.user-profile>* {
+	margin: 0;
 }
 
 
@@ -84,10 +90,6 @@
 	transform: translateY(-4px) rotate(25deg);
 }
 
-/* ///////////////////// */
-/* ///////////////////// */
-/* ///////////////////// */
-/* ///////////////////// */
 .hamburger-out {
 	margin-left: 24px;
 }
@@ -142,6 +144,7 @@
 
 .nav-details {
 	display: flex;
+	align-items: center;
 }
 
 .nav-details img {
@@ -154,15 +157,16 @@
 	height: 87px;
 	position: absolute;
 	bottom: 0;
+	align-items: center;
 }
 
 .nav-footer-avatar {
-	margin-top: 15px;
 	height: 50px;
 	width: auto;
 }
 
 .nav-footer-user-name {
+	margin: 0;
 	font-size: 25px;
 }
 
