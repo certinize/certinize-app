@@ -23,13 +23,23 @@
     height: 100vh;
 }
 
+/* vertically and horizontally center content */
+/* max width and height */
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
 .success-box {
     margin-top: 5%;
     display: flex;
     align-items: center;
 }
 
-.content {
+.logo-container {
     margin: 0 auto;
     ;
 }
@@ -54,14 +64,16 @@
 }
 
 .return-btn {
-    width: 15%;
+    width: 25%;
     padding: 15px 15px;
     border: none;
     background-color: #1A799D;
+    border: 1px solid rgba(26, 122, 157, 0);
     color: #ffff;
     border-radius: 10px;
     transition: .5s;
     font-size: large;
+    margin: 5% auto;
 }
 
 .return-btn:hover {
@@ -72,5 +84,6 @@
 }
 
 .success-msg {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
