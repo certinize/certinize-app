@@ -1,11 +1,16 @@
-import React, {  } from "react";
+import React, { useState } from "react";
 import "./Transfer.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import TransferModal from "../../TransferModal/TransferModal";
 // import Navbar from "../../components/NavBar/Navbar";
+
+
 const TransferFile = () => {
+    const [openModal, setOpenModal] = useState(false)
     
 	return (
         <div>
+            <TransferModal open={openModal} onClose={() => setOpenModal(false)} />
             <div className="body">
             <div className="title">
                 <p>Distribute Certificate </p>
@@ -96,10 +101,9 @@ const TransferFile = () => {
                         </tbody>
                     </table>
                 </div>
-
                 {/* Navigation Buttons */}
                 <div className="buttonSet">
-                    <button className="button ctn" type="button">Continue</button>
+                    <button className="button ctn" type="button" onClick={() => setOpenModal(true)}>Continue</button>
                     <button  className="button cancel" type="button">Cancel</button>
                 </div>
             </div>
