@@ -1,5 +1,5 @@
-import "./App.css";
 import Success from "../pages/Sucess/Success.js";
+import "./App.css";
 import React from "react";
 
 function App() {
