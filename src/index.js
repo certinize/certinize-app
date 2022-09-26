@@ -1,4 +1,4 @@
-import App from "./App";
+import App from "./app/App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import React from "react";
