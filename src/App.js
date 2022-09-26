@@ -1,12 +1,13 @@
-import React from 'react';
-import SelectCertificate from './pages/Transfer/SelectCertificate/Select';
-//import TransferFile from './pages/Transfer/Transfer';
 
-  function App() {
-    return (
-      <div>
-        <SelectCertificate/>
-      </div>
+import "./App.css";
+import SuccessPage from "./pages/Transfer/Success";
+import React from "react";
+
+function App() {
+  return (
+    <>
+      <SuccessPage />
+    </>
   );
 }
 
