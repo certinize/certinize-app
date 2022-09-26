@@ -3,7 +3,7 @@ import SideNavBar from "../../components/SideNavBar/SideNavBar";
 import "./Success.css";
 import React, { useState } from "react";
 
-const SuccessPage = () => {
+const Success = () => {
   const [isExpanded, setExpendState] = useState(false);
 
   return (
@@ -32,4 +32,4 @@ const SuccessPage = () => {
   );
 };
 
-export default SuccessPage;
+export default Success;

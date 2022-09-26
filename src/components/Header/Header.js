@@ -10,8 +10,4 @@ export default Header;
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 9e78c5c636aceaa98cbf8d0ed5667d339e86906f

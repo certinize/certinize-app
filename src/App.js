@@ -1,12 +1,11 @@
-
 import "./App.css";
-import SuccessPage from "./pages/Transfer/Success";
+import Success from "./pages/Sucess/Success.js";
 import React from "react";
 
 function App() {
   return (
     <>
-      <SuccessPage />
+      <Success />
     </>
   );
 }
