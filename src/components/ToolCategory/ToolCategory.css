@@ -1,0 +1,21 @@
+.tool-category {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.font-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
+.tool-category-label {
+  color: #fff;
+  font-size: large;
+  padding: 10px;
+}
+
+.input-label {
+  color: #fff;
+  font-size: medium;
+}

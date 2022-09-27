@@ -1,0 +1,61 @@
+.primary-container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr;
+  grid-template-areas: "editor preview";
+  height: 100%;
+}
+
+.editor-container {
+  display: grid;
+  grid-template-rows: auto auto;
+  height: 100vh;
+}
+
+.ecert-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 1280px;
+  height: 780px;
+  border: 1px solid black;
+  position: relative;
+}
+
+.handle {
+  display: inline-block;
+  position: absolute;
+}
+
+.name {
+  margin: 0;
+}
+
+.name:hover {
+  cursor: move;
+}
+
+.date {
+  margin: 0;
+}
+
+.date:hover {
+  cursor: move;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* NOTE: Width is based on the width of the expanded SideNavBar component */
+.tool-menu {
+  height: 100vh;
+  width: 300px;
+  background-color: #1c3843;
+}
