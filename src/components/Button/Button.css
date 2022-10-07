@@ -1,17 +1,70 @@
-.button {
+.certinize-btn-primary {
   background-color: rgb(26, 121, 157);
   border: 1px solid rgba(26, 122, 157, 0);
   border-radius: 10px;
   color: rgb(255, 255, 255);
-  font-size: large;
   padding: 1em;
   transition: 0.2s;
-  width: 10%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.button:hover {
+.certinize-btn-primary:hover {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(26, 121, 157);
   color: rgb(26, 121, 157);
   cursor: pointer;
+}
+
+.certinize-btn-danger {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  padding: 1em;
+  transition: 0.2s;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.certinize-btn-danger:hover {
+  background-color: rgb(183, 11, 11);
+  border: 1px solid rgba(0, 0, 0, 0);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+/* Responsive screen size breakpoints: <=600px, <=768px, <=992px, <=1200px */
+/* Ensure the button resizes according to the screen size */
+@media screen and (max-width: 600px) {
+  .certinize-btn {
+    font-size: smaller;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .certinize-btn {
+    font-size: small;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .certinize-btn {
+    font-size: medium;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .certinize-btn {
+    font-size: large;
+  }
 }
