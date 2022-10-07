@@ -2,12 +2,15 @@ import "./TransferModal.css";
 import PropTypes from "prop-types";
 import React from "react";
 
-export default function TransferModal({ open, onClose }) {
+export default function TransferModal({ open, onClose, numRecipients }) {
   if (!open) return null;
+
   return (
-    <div className="overlay">
+    <div id="certinizeModal" className="overlay">
       <div className="container">
-        <p className="definition">Transfer Certificate to (1) Recipients?</p>
+        <p className="definition">
+          Transfer Certificate to ({numRecipients}) Recipients?
+        </p>
         <div className="buttonBtn">
           <button className="transferbtn">Transfer</button>
           <button className="cancelbtn" onClick={onClose}>
@@ -22,4 +25,5 @@ export default function TransferModal({ open, onClose }) {
 TransferModal.propTypes = {
   open: PropTypes.any,
   onClose: PropTypes.func,
+  numRecipients: PropTypes.number.isRequired,
 };
