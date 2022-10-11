@@ -15,17 +15,35 @@ const CollectionCertificate = () => {
         </div>
 
         <div className="btn-container">
-          <button className="upload" type="button"><FiUpload className="icon"/> Upload Certificate Template</button>
+          <button className="upload" type="button"> 
+            <FiUpload className="icon"/>
+            Upload Certificate Template
+          </button>
         </div>
 
         <div>
           <div className="grid">
-            <img className="certi" src="./img/certificate.jpg" alt="" />
-            <img className="certi" src="./img/certificate.jpg" alt="" />
-            <img className="certi" src="./img/certificate.jpg" alt="" />
-            <img className="certi" src="./img/certificate.jpg" alt="" />
-            <img className="certi" src="./img/certificate.jpg" alt="" />
-            <img className="certi" src="./img/certificate.jpg" alt="" />
+
+            <a className="thumbnail" href="#thumb">
+              <img className="certi" src="./img/certificate.jpg"/>
+              <span>
+                <img className="certi-preview" src="./img/certificate.jpg" />
+              </span>
+            </a>
+            <a className="thumbnail" href="#thumb">
+              <img className="certi" src="./img/certificate.jpg"/>
+              <span>
+                <img className="certi-preview" src="./img/certificate.jpg" />
+              </span>
+            </a>
+            <a className="thumbnail" href="#thumb">
+              <img className="certi" src="./img/certificate.jpg"/>
+              <span>
+                <img className="certi-preview" src="./img/certificate.jpg" />
+              </span>
+            </a>
+
+
           </div>
         </div>
   </>
