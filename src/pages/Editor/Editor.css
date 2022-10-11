@@ -3,7 +3,7 @@
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;
   grid-template-areas: "editor preview";
-  height: 100%;
+  height: 100vh;
 }
 
 .editor-container {
@@ -56,6 +56,30 @@
 /* NOTE: Width is based on the width of the expanded SideNavBar component */
 .tool-menu {
   height: 100vh;
-  width: 300px;
+  width: 16vw;
   background-color: #1c3843;
+}
+
+@media screen and (max-width: 600px) {
+  .tool-menu {
+    height: 600px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tool-menu {
+    height: 768px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .tool-menu {
+    height: 992px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .tool-menu {
+    height: 1200px;
+  }
 }

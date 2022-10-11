@@ -74,7 +74,10 @@ export default class Editor extends React.Component {
             </div>
           </div>
           <div className="btn-container">
-            <Button text="Next" />
+            <Button
+              text="Next"
+              style={{ width: "10%", height: "3em", fontSize: "1.5em" }}
+            />
           </div>
         </div>
         <div className="tool-menu">
