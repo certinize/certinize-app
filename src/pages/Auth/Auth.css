@@ -1,0 +1,66 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.auth-container{
+    display: flex;
+    align-items: center;
+    gap: 30vh;
+    margin: 7vh;
+    justify-content: center;;
+}
+
+.certinize{
+    align-content: center;
+}
+
+p{
+    font-size: 5rem;
+    font-weight: bold;
+    color: #0D4B65;
+    text-align: center;
+}
+
+.get-started{
+    font-style: italic;
+    color: #0D4B65;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.span-get,  .span-bold{
+    display: block;
+}
+
+.span-get{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.span-started{
+    font-size: 2rem;
+}
+
+.logo{
+    height: auto;
+    width: 350px;
+}
+
+.wallet-label{
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.ethereum-wallet-btn{
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 12px;
+    align-items: center;
+    width: 2vh;
+    background-color: #ffff;
+
+}

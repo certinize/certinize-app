@@ -1,4 +1,4 @@
-import "./Select.css";
+import "./SelectCertificate.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 

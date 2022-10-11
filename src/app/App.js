@@ -1,11 +1,12 @@
-import Editor from "../pages/Editor/Editor";
+
 import "./App.css";
 import React from "react";
+import TransferFile from "../pages/Transfer/Transfer";
 
 function App() {
   return (
     <>
-      <Editor />
+      <TransferFile/>
     </>
   );
 }

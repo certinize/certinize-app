@@ -4,6 +4,7 @@ import TransferModal from "../../components/TransferModal/TransferModal";
 import "./Transfer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
+import Navbar from "../../components/NavBar/NavBar";
 
 const TransferFile = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -24,6 +25,7 @@ const TransferFile = () => {
 
   return (
     <div>
+      <Navbar/>
       <div className="certinize-modal">
         <TransferModal
           open={openModal}
