@@ -38,6 +38,7 @@ export default function ToolCategory({
           onChange={(option) => {
             secondCallback(option);
           }}
+          placeholder="Select size..."
         />
       </div>
     </div>
