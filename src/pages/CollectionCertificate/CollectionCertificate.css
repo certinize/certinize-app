@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+h1{
+    padding: 30px;
+    font-style: italic;
+    font-weight: bold;
+    color:#0D4B65;
+}
+.heading{
+    margin-left: 30px;
+}
+.latest{
+    margin-top: 5px;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #608588;
+}
+  
+.btn-container{
+    padding: 30px;
+}
+
+.upload{
+	background-color: #1889B6;
+	color: white;
+	text-decoration: none;
+	border: 2px solid transparent;
+	padding: 10px 30px;
+	border-radius: 12px;
+	transition: .4s; 
+    width: 30%;
+}
+
+.upload:hover{
+	background-color: transparent;
+	border: 2px solid #1889B6;
+    border-radius: 12px;
+	cursor: pointer;
+    color: #1889B6;
+    font-weight: bold;
+}
+
+.line{
+    margin-top: -20px;
+    margin-left: 130px;
+}
+
+.icon{
+    font-size: 20px;
+    margin-right: 10px;
+} 
+
+.grid{
+    padding: 6vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(8);
+    grid-gap: 10vh;
+}
+
+.certi{
+    height: auto;
+    width: 300px;
+}
