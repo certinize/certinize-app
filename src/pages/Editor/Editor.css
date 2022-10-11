@@ -51,6 +51,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 /* NOTE: Width is based on the width of the expanded SideNavBar component */
