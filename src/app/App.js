@@ -1,12 +1,12 @@
 
 import "./App.css";
 import React from "react";
-import TransferFile from "../pages/Transfer/Transfer";
+import CollectionCertificate from "../pages/CollectionCertificate/CollectionCertificate";
 
 function App() {
   return (
     <>
-      <TransferFile/>
+      <CollectionCertificate/>
     </>
   );
 }
