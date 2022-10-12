@@ -1,8 +1,8 @@
-import RecipientTable from "../pages/RecipientTable";
-import SelectTemplate from "../pages/SelectTemplate";
-import Success from "../pages/Success";
-import TemplateEditor from "../pages/TemplateEditor";
-import TransferCertificate from "../pages/TransferCertificate";
+import RecipientTable from "../containers/RecipientTable";
+import SelectTemplate from "../containers/SelectTemplate";
+import Success from "../containers/Success";
+import TemplateEditor from "../containers/TemplateEditor";
+import TransferCertificate from "../containers/TransferCertificate";
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 

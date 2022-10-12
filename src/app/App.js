@@ -1,4 +1,4 @@
-import TransferCertificate from "../pages/TransferCertificate";
+import TransferCertificate from "../containers/TransferCertificate";
 import "./App.css";
 import React from "react";
 
