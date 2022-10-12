@@ -18,6 +18,7 @@ export default function ToolCategory({
           Style
         </label>
         <Select
+          className="select-option"
           options={first}
           isSearchable={false}
           defaultValue={{
@@ -33,6 +34,7 @@ export default function ToolCategory({
           Size
         </label>
         <Select
+          className="select-option"
           options={second}
           id="size"
           onChange={(option) => {

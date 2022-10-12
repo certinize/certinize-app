@@ -2,7 +2,7 @@ import "./CollectionCertificate.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { FiUpload } from "react-icons/fi";
-import NavBar from "../../components/NavBar/NavBar";
+import NavBar from "../../components/NavBar";
 
 const CollectionCertificate = () => {
   return (

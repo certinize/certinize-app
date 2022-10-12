@@ -1,12 +1,11 @@
 import Button from "../../components/Button/Button";
-import Header from "../../components/Header/Header";
-import TransferModal from "../../components/TransferModal/TransferModal";
-import "./Transfer.css";
+import Modal from "../../components/Modal";
+import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { PropTypes } from "prop-types";
 import React, { useState } from "react";
-import Navbar from "../../components/NavBar/NavBar";
 
-const TransferFile = () => {
+const RecipientTable = ({ actionController }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const handleEscape = (e) => {
@@ -25,17 +24,25 @@ const TransferFile = () => {
 
   return (
     <div>
-      <Navbar/>
-      <div className="certinize-modal">
-        <TransferModal
+      <div className="certinize-modal" id="modal">
+        <Modal
           open={openModal}
+          title="Issue Certificate"
           onClose={() => setOpenModal(false)}
-          numRecipients={5}
-        />
+        >
+          <div className="certinize-modal-body">
+            Distribute certificate to five (5) recipients?
+          </div>
+          <div className="modal-btn-group">
+            <div className="btn-group-col">
+              <Button text="Cancel" styleType="danger" />
+              <Button text="Transfer" />
+            </div>
+          </div>
+        </Modal>
       </div>
-      <Header title="Distribute Certificate" />
-      <div className="container d-flex justify-content-center align-items-start mt-5">
-        <div className="flex-grow-1">
+      <div className="d-flex justify-content-center align-items-start mt-5">
+        <div className="w-75">
           <form className="content-form">
             <div className="form-group">
               <label className="form-label" htmlFor="recipientName">
@@ -113,7 +120,10 @@ const TransferFile = () => {
             </table>
           </div>
           <div className="button-set">
-            <Button text="Continue" onClick={() => setOpenModal(true)} />
+            <Button
+              text="Continue"
+              onClick={() => actionController("toSelectTemplate")}
+            />
             <Button text="Cancel" styleType="danger" />
           </div>
         </div>
@@ -122,4 +132,8 @@ const TransferFile = () => {
   );
 };
 
-export default TransferFile;
+RecipientTable.propTypes = {
+  actionController: PropTypes.func,
+};
+
+export default RecipientTable;

@@ -1,12 +1,11 @@
-
+import TransferCertificate from "../pages/TransferCertificate";
 import "./App.css";
 import React from "react";
-import CollectionCertificate from "../pages/CollectionCertificate/CollectionCertificate";
 
 function App() {
   return (
     <>
-      <CollectionCertificate/>
+      <TransferCertificate />
     </>
   );
 }
