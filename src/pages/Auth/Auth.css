@@ -2,28 +2,54 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    background-image: url('bg2.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.logo{
+    height: auto;
+    width: 350px;
 }
 
 .auth-container{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 30vh;
     margin: 7vh;
-    justify-content: center;;
+    justify-content: center;
 }
 
-.certinize{
-    align-content: center;
+.certinize .pre-title{
+    font-size: 3rem;
+    color: #0D4B65;
+    font-weight: 700;
+    line-height: 3rem;
 }
 
-p{
+.certinize span{
+    display: block;;
+}
+
+.title{
     font-size: 5rem;
     font-weight: bold;
-    color: #0D4B65;
-    text-align: center;
+    color: transparent;
+    -webkit-text-fill-color: #0D4B65;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+    text-shadow: -6px 6px 0px #38ADD9;
+}
+
+form{
+    background-color: #ffffff;
+
 }
 
 .get-started{
+    line-height: 50px;
     font-style: italic;
     color: #0D4B65;
 }
@@ -37,18 +63,14 @@ p{
 }
 
 .span-get{
-    font-size: 50px;
+    font-size: 60px;
     font-weight: bold;
 }
 
 .span-started{
-    font-size: 2rem;
+    font-size: 35px;
 }
 
-.logo{
-    height: auto;
-    width: 350px;
-}
 
 .wallet-label{
     font-size: 20px;
