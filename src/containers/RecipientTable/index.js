@@ -7,6 +7,49 @@ import React, { useState } from "react";
 
 const RecipientTable = ({ actionController }) => {
   const [openModal, setOpenModal] = useState(false);
+  const [recipientList, setRecipientList] = useState([]);
+
+  const deleteRecipient = (index) => {
+    const newRecipientList = [...recipientList];
+    newRecipientList.splice(index, 1);
+    setRecipientList(newRecipientList);
+  };
+
+  const createTableRows = () => {
+    return recipientList.map((recipient, index) => {
+      console.log(recipient);
+      return (
+        <tr key={index}>
+          <td>{index}</td>
+          <td>{recipient[0]}</td>
+          <td>{recipient[1]}</td>
+          <td>{recipient[2]}</td>
+          <td>
+            <Button
+              text="Delete"
+              styleType="danger"
+              onClick={() => deleteRecipient(index)}
+              style={{ height: "2.5rem", width: "6.25rem" }}
+            />
+          </td>
+        </tr>
+      );
+    });
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    const recipient = [
+      e.target.elements.recipientName.value,
+      e.target.elements.walletAddress.value,
+      e.target.elements.emailAddress.value,
+    ];
+
+    setRecipientList((oldRecipientList) => [...oldRecipientList, recipient]);
+
+    e.target.reset();
+  };
 
   const handleEscape = (e) => {
     if (e.key === "Escape") {
@@ -43,35 +86,54 @@ const RecipientTable = ({ actionController }) => {
       </div>
       <div className="d-flex justify-content-center align-items-start mt-5">
         <div className="w-75">
-          <form className="content-form">
-            <div className="form-group">
+          <form
+            className="content-form"
+            onSubmit={handleOnSubmit}
+            id="recipientForm"
+          >
+            <div className="form-group mx-2">
               <label className="form-label" htmlFor="recipientName">
                 Full Name
               </label>
               <input
                 type="text"
                 className="form-control"
+                name="recipientName"
                 id="recipientName"
-                aria-describedby="recipientName"
+                aria-describedby="recipient-name"
                 placeholder="Enter Full Name"
               />
             </div>
-            <div className="form-group mx-5">
+            <div className="form-group mx-2">
               <label className="form-label" htmlFor="walletAddress">
                 Wallet Address
               </label>
               <input
                 type="text"
                 className="form-control"
+                name="walletAddress"
                 id="walletAddress"
-                aria-describedby="walletAddress"
+                aria-describedby="wallet-address"
                 placeholder="Enter Wallet Address"
+              />
+            </div>
+            <div className="form-group mx-2">
+              <label className="form-label" htmlFor="walletAddress">
+                Email
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                name="emailAddress"
+                id="emailAddress"
+                aria-describedby="email-address"
+                placeholder="Enter Email"
               />
             </div>
             <Button
               text="Add"
               type="submit"
-              style={{ margin: 0, width: "10%", height: "50px" }}
+              style={{ margin: 0, width: "6.25rem", height: "3.125rem" }}
             />
           </form>
 
@@ -79,44 +141,22 @@ const RecipientTable = ({ actionController }) => {
             <table className="table table-borderless table-hover table-responsive">
               <thead>
                 <tr>
-                  <th>
+                  <th className="number-col">
                     <p>#</p>
                   </th>
-                  <th>
+                  <th className="w-25">
                     <p>Name</p>
                   </th>
-                  <th>
-                    <p>Blockchain Address</p>
+                  <th className="w-25">
+                    <p>Wallet Address</p>
                   </th>
+                  <th className="w-25">
+                    <p>Email</p>
+                  </th>
+                  <th className="w-25"></th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Juan Dela Cruz</td>
-                  <td>B7KNk9UWUGjg89NrmuCvuzNc9dNrmQYCQtcQB525a8HU</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Franz Ronin Manrique</td>
-                  <td>B7KNk9UWUGjg89NrmuCvuzNc9dNrmQYCQtcQB525a8HU</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Mindy Kay Zaracena</td>
-                  <td>B7KNk9UWUGjg89NrmuCvuzNc9dNrmQYCQtcQB525a8HU</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Hju Kneyck Flores</td>
-                  <td>B7KNk9UWUGjg89NrmuCvuzNc9dNrmQYCQtcQB525a8HU</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Jose Tan Jr.</td>
-                  <td>B7KNk9UWUGjg89NrmuCvuzNc9dNrmQYCQtcQB525a8HU</td>
-                </tr>
-              </tbody>
+              <tbody>{createTableRows()}</tbody>
             </table>
           </div>
           <div className="button-set">

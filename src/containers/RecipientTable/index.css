@@ -38,6 +38,10 @@ td {
   color: #0d4b65;
 }
 
+tr {
+  vertical-align: middle;
+}
+
 .user-table {
   margin-top: 20px;
   align-content: center;
@@ -97,4 +101,8 @@ td {
   width: 50%;
   display: flex;
   flex-direction: row;
+}
+
+.number-col {
+  width: 10%;
 }
