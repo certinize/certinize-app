@@ -1,12 +1,12 @@
 
 import "./App.css";
 import React from "react";
-import CollectionCertificate from "../pages/CollectionCertificate/CollectionCertificate";
+import UploadCertificate from "../pages/UploadCertificate/UploadCertificate";
 
 function App() {
   return (
     <>
-      <CollectionCertificate/>
+      <UploadCertificate/>
     </>
   );
 }

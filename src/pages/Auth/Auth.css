@@ -36,11 +36,7 @@
 .title{
     font-size: 5rem;
     font-weight: bold;
-    color: transparent;
-    -webkit-text-fill-color: #0D4B65;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: white;
-    text-shadow: -6px 6px 0px #38ADD9;
+    color: #0D4B65;
 }
 
 form{

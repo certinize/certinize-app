@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BiTransfer } from "react-icons/bi";
 // import { BsFillBellFill } from "react-icons/bs";
 import { FaCertificate, FaUserCircle } from "react-icons/fa";
+import { RiTeamFill } from "react-icons/ri";
 
 const NavBar = () => {
 	return (
@@ -15,6 +16,7 @@ const NavBar = () => {
                 </div>
                 <div className="nav-link">
                     <ul>
+                        <li><a href=""><RiTeamFill className="icon"/>About Us</a></li>  
                         <li><a href=""><FaUserCircle className="icon"/>Profile</a></li>  
                         <li><a href=""><FaCertificate className="icon"/>Certificates</a></li>
                         <li><a href=""><BiTransfer className="icon"/>Transfer</a></li>       
@@ -26,7 +28,10 @@ const NavBar = () => {
                     <div className="profile-display">
                         <ul>
                             <li>
-                                <img className="profile-icon" src="./img/default_user.png" alt=""/>
+                                <div className="flex-icon">
+                                    <img className="profile-icon" src="./img/default_user.png" alt=""/>
+                                </div>
+
                                 <div className="profile-name">
                                     <p>Unnamed User</p>
                                     <p>#12345</p>  
