@@ -1,0 +1,71 @@
+.page-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+.success-box {
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+}
+
+.success-logo-container {
+  margin: 0 auto;
+}
+
+.success-logo {
+  height: auto;
+  width: 18.75rem;
+}
+
+.check {
+  margin-top: 15.625rem;
+  height: 3.125rem;
+  width: 3.125rem;
+}
+
+.msg {
+  padding-top: 1.25rem;
+  text-align: center;
+  font-size: 3.125rem;
+  font-style: italic;
+  color: #a0a0a0;
+}
+
+.return-btn {
+  width: 25%;
+  padding: 0.9375rem 0.9375rem;
+  border: none;
+  background-color: #1a799d;
+  border: 0.0625rem solid rgba(26, 122, 157, 0);
+  color: #ffff;
+  border-radius: 0.625rem;
+  transition: 0.5s;
+  font-size: large;
+  margin: 5% auto;
+}
+
+.return-btn:hover {
+  background-color: transparent;
+  border: 0.0625rem solid #1a799d;
+  color: #1a799d;
+  cursor: pointer;
+}
+
+.success-msg {
+  display: flex;
+  flex-direction: column;
+}

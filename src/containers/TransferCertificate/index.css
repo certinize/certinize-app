@@ -1,0 +1,14 @@
+.content-body {
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipient-table {
+  margin-left: 10%;
+}

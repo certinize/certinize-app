@@ -1,7 +1,9 @@
 import Button from "../../components/Button/Button";
+import Modal from "../../components/Modal";
 import ToolCategory from "../../components/ToolCategory/ToolCategory";
-import "./Editor.css";
+import "./index.css";
 import { toPng } from "html-to-image";
+import { PropTypes } from "prop-types";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import Draggable from "react-draggable";
@@ -32,24 +34,22 @@ const FONT_SIZES = [
   { value: "70", label: "70" },
 ];
 
-const BUTTON_STYLE = { width: "10%", height: "3em", fontSize: "1.5em" };
+const BUTTON_STYLE = { width: "10%", height: "3rem", fontSize: "1.5rem" };
 
-export default class Editor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.recipientName = React.createRef();
-    this.date = React.createRef();
-  }
+const TemplateEditor = ({ actionController }) => {
+  const [openModal, setOpenModal] = React.useState(false);
+  const recipientName = React.useRef();
+  const date = React.useRef();
 
-  updateFontStyle(ref, fontStyle = "arial") {
-    ref.current.style.fontFamily = fontStyle;
-  }
-
-  updateFontSize(ref, fontSize = 12) {
+  const updateFontSize = (ref, fontSize = 12) => {
     ref.current.style.fontSize = `${fontSize}px`;
-  }
+  };
 
-  generateImage() {
+  const updateFontStyle = (ref, fontStyle = "arial") => {
+    ref.current.style.fontFamily = fontStyle;
+  };
+
+  const generateImage = () => {
     toPng(document.getElementById("certificateBox"), {
       quality: 1,
     }).then(function (dataUrl) {
@@ -68,6 +68,7 @@ export default class Editor extends React.Component {
           <Button
             text="Transfer"
             style={{ marginLeft: "1em", marginRight: "1em", ...BUTTON_STYLE }}
+            onClick={() => setOpenModal(true)}
           />
           <Button text="Cancel" style={BUTTON_STYLE} styleType="danger" />
         </div>
@@ -75,23 +76,43 @@ export default class Editor extends React.Component {
 
       document.getElementById("certificateBox").replaceWith(image);
     });
-  }
+  };
 
-  render() {
-    return (
+  return (
+    <>
+      <div className="certinize-modal" id="modal">
+        <Modal
+          open={openModal}
+          title="Issue Certificate"
+          onClose={() => setOpenModal(false)}
+        >
+          <div className="certinize-modal-body">
+            Distribute certificate to five (5) recipients?
+          </div>
+          <div className="modal-btn-group">
+            <div className="btn-group-col">
+              <Button text="Cancel" styleType="danger" />
+              <Button
+                text="Transfer"
+                onClick={() => actionController("toSendIssueRequest")}
+              />
+            </div>
+          </div>
+        </Modal>
+      </div>
       <div className="primary-container">
         <div className="editor-container">
           <div className="ecert-container">
             <div className="box" id="certificateBox">
               <Draggable bounds="parent" defaultPosition={{ x: 0, y: 0 }}>
-                <div className="handle" ref={this.recipientName}>
+                <div className="handle" ref={recipientName}>
                   <div className="box__title">
-                    <p className="name">Maria Dela Cruz</p>
+                    <p className="recipient-name">Maria Dela Cruz</p>
                   </div>
                 </div>
               </Draggable>
               <Draggable bounds="parent" defaultPosition={{ x: 0, y: 20 }}>
-                <div className="handle" ref={this.date}>
+                <div className="handle" ref={date}>
                   <div className="box__title">
                     <p className="date">MM/DD/YYYY</p>
                   </div>
@@ -100,11 +121,7 @@ export default class Editor extends React.Component {
             </div>
           </div>
           <div className="btn-container">
-            <Button
-              text="Next"
-              style={BUTTON_STYLE}
-              onClick={this.generateImage}
-            />
+            <Button text="Next" style={BUTTON_STYLE} onClick={generateImage} />
           </div>
         </div>
         <div className="tool-menu">
@@ -113,10 +130,10 @@ export default class Editor extends React.Component {
             first={FONT_STYLES}
             second={FONT_SIZES}
             firstCallback={(option) => {
-              this.updateFontStyle(this.recipientName, option.value);
+              updateFontStyle(recipientName, option.value);
             }}
             secondCallback={(option) => {
-              this.updateFontSize(this.recipientName, option.value);
+              updateFontSize(recipientName, option.value);
             }}
           />
           <ToolCategory
@@ -124,14 +141,20 @@ export default class Editor extends React.Component {
             first={FONT_STYLES}
             second={FONT_SIZES}
             firstCallback={(option) => {
-              this.updateFontStyle(this.date, option.value);
+              updateFontStyle(date, option.value);
             }}
             secondCallback={(option) => {
-              this.updateFontSize(this.date, option.value);
+              updateFontSize(date, option.value);
             }}
           />
         </div>
       </div>
-    );
-  }
-}
+    </>
+  );
+};
+
+TemplateEditor.propTypes = {
+  actionController: PropTypes.func,
+};
+
+export default TemplateEditor;

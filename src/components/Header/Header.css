@@ -1,14 +1,15 @@
 .header {
-    align-items: center;
-    background-color: #fff;
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2);
-    color: #0D4B65;
-    display: flex;
-    font-size: 45px;
-    font-weight: bold;
-    font-style: italic;
-    height: 80px;
-    justify-content: space-between;
-    padding: 0 20px;
-    text-transform: uppercase;
+  margin: 0;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2);
+  color: #0d4b65;
+  display: flex;
+  font-size: 45px;
+  font-weight: bold;
+  font-style: italic;
+  height: 80px;
+  justify-content: space-between;
+  padding: 0 20px;
+  text-transform: uppercase;
 }
