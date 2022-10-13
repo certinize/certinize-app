@@ -34,7 +34,7 @@ const FONT_SIZES = [
   { value: "70", label: "70" },
 ];
 
-const BUTTON_STYLE = { width: "10%", height: "3em", fontSize: "1.5em" };
+const BUTTON_STYLE = { width: "10%", height: "3rem", fontSize: "1.5rem" };
 
 const TemplateEditor = ({ actionController }) => {
   const [openModal, setOpenModal] = React.useState(false);
