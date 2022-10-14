@@ -2,32 +2,33 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Inter";
 }
 
 .navbar {
   display: flex;
+  align-items: center;
   color: white;
-  background-color: #1c3843;
+  background-color: #121f24;
 }
 
 .nav-header {
-  margin-left: 20px;
+  margin-left: 1.25rem;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .logo {
   height: auto;
-  width: 40px;
+  width: 2.5rem;
 }
 
 .certinize {
-  font-size: 27px;
+  font-size: 1.5625rem;
 }
 
 ul {
-  padding-top: 10px;
   list-style-type: none;
   align-content: center;
 }
@@ -39,48 +40,130 @@ li {
 li a {
   height: 100%;
   display: flex;
+  align-items: center;
   color: white;
-  padding: 16px 30px;
+  padding: 1rem 1.875rem;
   text-decoration: none;
-  font-size: 20px;
-  border-radius: 50px;
+  font-size: 1.0625rem;
+  border-radius: 3.125rem;
 }
 
 .icon {
-  margin-top: 6px;
-  margin-right: 10px;
-  font-size: 20px;
+  margin-top: 0rem;
+  margin-right: 0.625rem;
+  font-size: 1.25rem;
 }
 
 li a:hover {
   background-color: white;
   color: #1c3843;
   font-weight: bold;
-  border-radius: 50px;
-  transition: ease 0.3s;
+  border-radius: 3.125rem;
+  transition: 0.5s;
 }
 
-.user-profile {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.profile-display {
+  gap: 1.25rem;
 }
 
 span {
   display: block;
 }
 
-.name {
-  font-size: 20px;
-  font-weight: 500;
-}
-
 .user-icon {
   height: auto;
-  width: 50px;
-  margin-right: 30px;
+  width: 3.125rem;
+  margin-right: 1.875rem;
 }
 
-.user-profile:hover {
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-display:hover {
   height: auto;
+}
+
+/* USER DISPLAY WHEN HOVERED */
+
+.user-icon:hover + .profile-display ul {
+  visibility: visible;
+  transition: 0.5s;
+}
+
+.profile-display ul {
+  visibility: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #1c3843;
+  position: absolute;
+  left: 82%;
+  top: 4.0625rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 0.75rem;
+  border: 0.25rem solid #ffff;
+}
+
+.flex-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-icon {
+  height: auto;
+  width: 5.625rem;
+}
+
+.profile-display ul li {
+  border-radius: 0.75rem;
+  background-color: #1c3843;
+  padding: 1.25rem;
+  list-style: none;
+  list-style-type: none;
+  transition-delay: ease-out 0.4s;
+  box-shadow: -0.625rem 0.625rem 0rem #38add9;
+}
+
+.profile-display button {
+  border-radius: 0.75rem;
+  border: none;
+  color: #ffff;
+  background-color: #38add9;
+  padding: 0.125rem 1.875rem;
+  border: solid 0.125rem #38add9;
+}
+
+.profile-display button:hover {
+  background-color: transparent;
+  color: #38add9;
+  border-radius: 0.75rem;
+  padding: 0.125rem 1.875rem;
+  border: solid 0.125rem #38add9;
+  transition: 0.5s;
+}
+
+.profile-display .profile-name {
+  padding-top: 1.25rem;
+}
+
+.profile-display ul li p {
+  color: #ffff;
+  font-size: 0.9375rem;
+  font-weight: bold;
+  line-height: 0;
+  padding: 0.25rem;
+  text-align: center;
+}
+
+.profile-display ul li:hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+footer {
+  padding-top: 1.25rem;
+  text-align: center;
 }

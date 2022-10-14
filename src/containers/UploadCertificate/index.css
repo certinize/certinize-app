@@ -1,47 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Lato&family=Montserrat:ital,wght@0,300;0,400;0,700;1,700&family=Plus+Jakarta+Sans:ital,wght@0,700;1,400&family=Poppins:ital,wght@0,400;0,600;0,700;1,300;1,600;1,700&family=Ubuntu&family=Work+Sans&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-}
-
 .icon {
-  font-size: 35px;
+  font-size: 2.1875rem;
 }
 
-.title {
-  margin-left: 25px;
-  font-size: 45px;
-  color: #0d4b65;
-  font-weight: bold;
-  font-style: italic;
-  text-transform: uppercase;
-}
-
-.info-message {
-  background-color: #efefef;
-}
-
-.info-container {
-  width: 60%;
-  margin: 0 auto;
-}
-
-.uploadContainer {
-  margin: 0 auto;
+.upload-container {
+  margin: 0;
   width: 70%;
   background-color: #5c7a87;
-  padding: 40px 40px;
+  padding: 2.5rem 2.5rem;
   display: block;
 }
 
-.dashed-line {
-  border: dashed 4px #ffff;
-  padding: 40px 40px;
+.upload-container:hover {
+  cursor: pointer;
 }
 
-.uploadBtn {
+.dashed-line {
+  border: dashed 0.25rem #ffff;
+  padding: 2.5rem 2.5rem;
+}
+
+.upload-btn {
   display: flex;
   justify-content: center;
 }
@@ -50,50 +28,32 @@ input[type="file"] {
   display: none;
 }
 
-label {
+.intruction-btn {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 0.9375rem;
   align-items: center;
   text-align: center;
   background-color: #ffff;
   color: #0d4b65;
   text-decoration: none;
-  border: 2px solid transparent;
-  padding: 10px 20px;
-  border-radius: 30px;
+  border: 0.125rem solid transparent;
+  padding: 0.625rem 1.25rem;
+  border-radius: 1.875rem;
   transition: 0.4s;
   width: 60%;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
-label:hover {
-  font-weight: bold;
-  font-size: 20px;
-  color: #f15412;
-  width: 80%;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 150px;
-}
-
-.submit {
-  background-color: #1a799d;
-  border: none;
-  padding: 10px 20px;
-  color: #ffff;
-  border-radius: 10px;
-}
-
-.buttonSet {
+.button-set {
   display: flex;
   float: right;
-  margin: 30px;
-  gap: 30px;
+  margin: 1.875rem;
+  gap: 1.875rem;
 }
 
 .header {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   text-align: center;
   font-size: 2rem;
   color: #0d4b65;
@@ -106,46 +66,46 @@ label:hover {
   text-align: center;
   margin: 0 auto;
   width: 60%;
-  border-radius: 15px;
-  margin-top: 30px;
+  border-radius: 0.9375rem;
+  margin-top: 1.875rem;
 }
 
 .file-array {
   color: #ffff;
-  margin: 10px;
-  font-size: 25px;
+  margin: 0.625rem;
+  font-size: 1.5625rem;
 }
 
 .certificate-file {
-  margin: 20px 100px;
+  margin: 1.25rem 6.25rem;
   height: auto;
-  width: 250px;
+  width: 15.625rem;
 }
 
 .delete {
   border: none;
   background-color: #b70b0b;
-  border-radius: 5px;
-  padding: 10px 15px;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 0.9375rem;
   transition: 0.2s;
   color: #ffff;
-  font-size: 23px;
+  font-size: 1.4375rem;
   text-align: end;
 }
 
 .delete:hover {
-  padding: 10px 15px;
-  border-radius: 5px;
+  padding: 0.625rem 0.9375rem;
+  border-radius: 0.3125rem;
   transition: 0.2s;
   background-color: transparent;
-  border: solid 2px #b70b0b;
+  border: solid 0.125rem #b70b0b;
   color: #b70b0b;
 }
 
 .button {
-  padding: 10px 15px;
+  padding: 0.625rem 0.9375rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   color: #ffff;
   width: 70%;
 }
@@ -157,7 +117,7 @@ label:hover {
 
 .cancel {
   color: rgb(0, 0, 0);
-  border: solid 1px black;
+  border: solid 0.0625rem black;
   background-color: #ffff;
 }
 

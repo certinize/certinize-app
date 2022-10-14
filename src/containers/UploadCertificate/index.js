@@ -1,4 +1,5 @@
-import NavBar from "../../components/NavBar/NavBar";
+import Header from "../../components/Header/Header";
+import NavBar from "../../components/NavBar";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
@@ -29,30 +30,27 @@ const UploadCertificate = () => {
   return (
     <section>
       <NavBar />
-      <div className="title">
-        <p>Upload Certificate </p>
-      </div>
-      <hr />
-      <div className="container">
-        <div className="uploadContainer">
+      <Header title="Upload Certificate" />
+      <div className="container mt-5 d-flex justify-content-center">
+        <label className="upload-container">
           <div className="dashed-line">
-            <div className="uploadBtn">
-              <label>
+            <div className="upload-btn">
+              <div className="intruction-btn">
                 <AiOutlineFileAdd className="icon" />
-                <span>Upload Certificate</span>
+                <span>Drag or Drop</span>
                 <input
                   type="file"
                   name="file"
                   onChange={onSelectFile}
-                  accept="image/png , image/jpeg, image/webp"
+                  accept="image/png, image/jpeg, image/webp"
+                  multiple
                 />
-              </label>
+              </div>
             </div>
           </div>
-        </div>
+        </label>
       </div>
 
-      <p className="header">Upload Preview</p>
       <div className="file-preview">
         {selectedFiles &&
           selectedFiles.map((file) => {
@@ -70,7 +68,7 @@ const UploadCertificate = () => {
             );
           })}
       </div>
-      <div className="buttonSet">
+      <div className="button-set">
         <button className="button ctn" type="button">
           Continue
         </button>
