@@ -1,4 +1,4 @@
-import Button from "../../components/Button/Button";
+import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import ToolCategory from "../../components/ToolCategory/ToolCategory";
 import "./index.css";

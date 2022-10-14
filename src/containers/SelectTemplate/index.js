@@ -1,4 +1,4 @@
-import Button from "../../components/Button/Button";
+import Button from "../../components/Button";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { PropTypes } from "prop-types";

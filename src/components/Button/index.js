@@ -1,5 +1,4 @@
-// Reusable button component without using any css library or framework
-import "./Button.css";
+import "./index.css";
 import PropTypes from "prop-types";
 import React from "react";
 
