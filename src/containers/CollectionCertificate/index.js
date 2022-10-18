@@ -1,8 +1,9 @@
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { FiUpload } from "react-icons/fi";
+// import { FiUpload } from "react-icons/fi";
 import NavBar from "../../components/NavBar";
+import Button from "../../components/Button";
 
 const CollectionCertificate = () => {
   return (
@@ -14,33 +15,16 @@ const CollectionCertificate = () => {
             <hr className='line' />
         </div>
 
-        <div className="btn-container">
-          <button className="upload" type="button"> 
-            <FiUpload className="icon"/>
-            Upload Certificate Template
-          </button>
-        </div>
+        <Button/>
 
         <div>
           <div className="grid">
 
             <a className="thumbnail" href="#thumb">
               <img className="certi" src="./img/certificate.jpg"/>
-              <span>
-                <img className="certi-preview" src="./img/certificate.jpg" />
-              </span>
             </a>
             <a className="thumbnail" href="#thumb">
               <img className="certi" src="./img/certificate.jpg"/>
-              <span>
-                <img className="certi-preview" src="./img/certificate.jpg" />
-              </span>
-            </a>
-            <a className="thumbnail" href="#thumb">
-              <img className="certi" src="./img/certificate.jpg"/>
-              <span>
-                <img className="certi-preview" src="./img/certificate.jpg" />
-              </span>
             </a>
 
 

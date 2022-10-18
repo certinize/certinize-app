@@ -18,7 +18,7 @@ const NavBar = () => {
                 <ul className="links">
                     <li><Link to="/transfer"><BiTransfer className="icon"/> Transfer</Link></li>
                     <li><Link to="/certificates"><FaCertificate className="icon"/>Certificates</Link></li>
-                    <li><Link to="/profile"><RiTeamFill className="icon"/>My Profile</Link></li>
+                    <li><Link to="/profile"><RiTeamFill className="icon"/>Profile</Link></li>
                     <Link><img className="user-icon" src="./img/default_user.png" alt=""/></Link>
                 </ul>
 

@@ -13,7 +13,7 @@ body {
 }
 
 .divider{
-	margin-top: 13vh;
+	margin-top: 11vh;
 }
 
 nav {
@@ -45,31 +45,31 @@ nav .links {
 	padding: 0;
 	margin: 0;
 	width: 60%;
-	height: 100%;
 	display: flex;
+	justify-content: center;
 	align-items: center;
 }
-nav .links li {
+nav .links li{
 	list-style: none;
-	width: 100%;
+	display: flex;
+	align-items: center;;
 }
 nav .links a {
-	display: block;
+	display: flex;
 	padding: 1rem;
 	font-size: 16px;
 	font-weight: bold;
 	color: #fff;
 	text-decoration: none;
-  	border-radius: 50px;
   	margin-left: 20px;
-	text-align: center;;
+	border-radius: 10px;
+	text-align: center;
   
 }
 nav .links li a:hover{
   background-color: white;
   color: #1C3843;
   font-weight: bold;
-  border-radius: 50px;
   transition:  0.5s;
 }
 
@@ -78,6 +78,11 @@ nav .user-profile{
   float: right;
   width: 10%;
 	height: 100%;
+}
+
+.icon{
+	color: #ffff;
+	font-size: 30px;
 }
 
 nav .user-icon{
