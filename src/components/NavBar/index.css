@@ -8,27 +8,33 @@ body {
   margin-top: 0px;
   margin-right: 10px;
   font-size: 20px;
+  color: white;
+  
+}
+
+.divider{
+	margin-top: 13vh;
 }
 
 nav {
 	position: fixed;
-	z-index: 10;
+	z-index: 4;
 	left: 0;
 	right: 0;
 	top: 0;
-  padding: 10px;
+	color: #ffff;
 	background-color: #1C3843;
 }
 nav .logo {
 	float: left;
 	width: 40%;
-	height: 100%;
 	display: flex;
-  padding: 10px;
+  	padding: 10px;
+	margin-top: 10px;
 	align-items: center;
 	font-size: 24px;
 	color: #fff;
-  gap: 10px;
+  	gap: 10px;
 }
 
 nav .logo img{
@@ -41,11 +47,11 @@ nav .links {
 	width: 60%;
 	height: 100%;
 	display: flex;
-	justify-content: end;
 	align-items: center;
 }
 nav .links li {
 	list-style: none;
+	width: 100%;
 }
 nav .links a {
 	display: block;
@@ -54,8 +60,9 @@ nav .links a {
 	font-weight: bold;
 	color: #fff;
 	text-decoration: none;
-  border-radius: 50px;
-  margin-left: 20px;
+  	border-radius: 50px;
+  	margin-left: 20px;
+	text-align: center;;
   
 }
 nav .links li a:hover{
@@ -96,6 +103,7 @@ nav .icon-burger {
 	right: 5%;
 	top: 50%;
 	transform: translateY(-50%);
+	cursor: pointer;
 }
 nav .icon-burger .line {
 	width: 30px;

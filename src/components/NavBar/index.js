@@ -1,5 +1,6 @@
 import React, { } from "react";
 import "./index.css";
+import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BiTransfer } from "react-icons/bi";
 import { FaCertificate } from "react-icons/fa";
@@ -15,10 +16,10 @@ const NavBar = () => {
                     Certinize
                 </div>
                 <ul className="links">
-                    <li><a href="#home"><BiTransfer className="icon"/> Transfer</a></li>
-                    <li><a href="#about"><FaCertificate className="icon"/>Certificates</a></li>
-                    <li><a href="#work"><RiTeamFill className="icon"/>About Us</a></li>
-                    <img className="user-icon" src="./img/default_user.png" alt=""/>
+                    <li><Link to="/transfer"><BiTransfer className="icon"/> Transfer</Link></li>
+                    <li><Link to="/certificates"><FaCertificate className="icon"/>Certificates</Link></li>
+                    <li><Link to="/profile"><RiTeamFill className="icon"/>My Profile</Link></li>
+                    <Link><img className="user-icon" src="./img/default_user.png" alt=""/></Link>
                 </ul>
 
                 <label htmlFor="nav-toggle" className="icon-burger">
@@ -27,6 +28,7 @@ const NavBar = () => {
                     <div className="line"></div>
                 </label>
             </nav>
+            <section className="divider"/>
         </div>
 	);
 };
