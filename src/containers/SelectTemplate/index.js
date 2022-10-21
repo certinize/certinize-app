@@ -10,11 +10,10 @@ const SelectTemplate = ({ actionController }) => {
       <div>
         <div className="certi-grid"></div>
         <div className="button-set">
-          <Button
-            text="Continue"
-            onClick={() => actionController("toEditTemplate")}
-          />
-          <Button text="Cancel" styleType="danger" />
+          <Button onClick={() => actionController("toEditTemplate")}>
+            Continue
+          </Button>
+          <Button styleType="danger">Cancel</Button>
         </div>
       </div>
     </div>

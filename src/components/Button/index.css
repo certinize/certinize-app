@@ -40,6 +40,12 @@
   cursor: pointer;
 }
 
+.certinize-btn-child-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 /* Responsive screen size breakpoints: <=600px, <=768px, <=992px, <=1200px */
 /* Ensure the button resizes according to the screen size */
 @media screen and (max-width: 600px) {

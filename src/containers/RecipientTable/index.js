@@ -26,11 +26,12 @@ const RecipientTable = ({ actionController }) => {
           <td>{recipient[2]}</td>
           <td>
             <Button
-              text="Delete"
               styleType="danger"
               onClick={() => deleteRecipient(index)}
               style={{ height: "2.5rem", width: "6.25rem" }}
-            />
+            >
+              Delete
+            </Button>
           </td>
         </tr>
       );
@@ -78,8 +79,12 @@ const RecipientTable = ({ actionController }) => {
           </div>
           <div className="modal-btn-group">
             <div className="btn-group-col">
-              <Button text="Cancel" styleType="danger" />
-              <Button text="Transfer" />
+              <Button styleType="danger">
+                <span>Cancel</span>
+              </Button>
+              <Button>
+                <span>Transfer</span>
+              </Button>
             </div>
           </div>
         </Modal>
@@ -131,10 +136,11 @@ const RecipientTable = ({ actionController }) => {
               />
             </div>
             <Button
-              text="Add"
               type="submit"
               style={{ margin: 0, width: "6.25rem", height: "3.125rem" }}
-            />
+            >
+              Add
+            </Button>
           </form>
 
           <div className="user-table">
@@ -160,11 +166,10 @@ const RecipientTable = ({ actionController }) => {
             </table>
           </div>
           <div className="button-set">
-            <Button
-              text="Continue"
-              onClick={() => actionController("toSelectTemplate")}
-            />
-            <Button text="Cancel" styleType="danger" />
+            <Button onClick={() => actionController("toSelectTemplate")}>
+              Continue
+            </Button>
+            <Button styleType="danger">Cancel</Button>
           </div>
         </div>
       </div>

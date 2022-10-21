@@ -66,11 +66,14 @@ const TemplateEditor = ({ actionController }) => {
       btnContainer.render(
         <div className="btn-container">
           <Button
-            text="Transfer"
             style={{ marginLeft: "1em", marginRight: "1em", ...BUTTON_STYLE }}
             onClick={() => setOpenModal(true)}
-          />
-          <Button text="Cancel" style={BUTTON_STYLE} styleType="danger" />
+          >
+            Transfer
+          </Button>
+          <Button style={BUTTON_STYLE} styleType="danger">
+            Cancel
+          </Button>
         </div>
       );
 
@@ -91,11 +94,10 @@ const TemplateEditor = ({ actionController }) => {
           </div>
           <div className="modal-btn-group">
             <div className="btn-group-col">
-              <Button text="Cancel" styleType="danger" />
-              <Button
-                text="Transfer"
-                onClick={() => actionController("toSendIssueRequest")}
-              />
+              <Button styleType="danger">Cancel</Button>
+              <Button onClick={() => actionController("toSendIssueRequest")}>
+                Transfer
+              </Button>
             </div>
           </div>
         </Modal>
@@ -121,7 +123,9 @@ const TemplateEditor = ({ actionController }) => {
             </div>
           </div>
           <div className="btn-container">
-            <Button text="Next" style={BUTTON_STYLE} onClick={generateImage} />
+            <Button style={BUTTON_STYLE} onClick={generateImage}>
+              Next
+            </Button>
           </div>
         </div>
         <div className="tool-menu">
