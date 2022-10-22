@@ -68,6 +68,19 @@
   align-items: center;
 }
 
+.edit-template-btn-container {
+  width: 20%;
+  display: flex;
+  gap: 0.9375rem;
+}
+
+.edit-template-action-area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 2.5rem;
+}
+
 @media screen and (max-width: 600px) {
   .tool-menu {
     height: 37.5rem;

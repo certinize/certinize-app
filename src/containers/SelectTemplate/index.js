@@ -6,10 +6,9 @@ import React from "react";
 
 const SelectTemplate = ({ actionController }) => {
   return (
-    <div>
-      <div>
-        <div className="certi-grid"></div>
-        <div className="button-set">
+    <div className="select-template-container">
+      <div className="select-template-button-set">
+        <div className="select-template-button-set-content">
           <Button
             onClick={() => actionController("toEditTemplate")}
             text="Continue"

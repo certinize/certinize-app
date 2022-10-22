@@ -34,8 +34,6 @@ const FONT_SIZES = [
   { value: "70", label: "70" },
 ];
 
-const BUTTON_STYLE = { width: "10%", height: "3rem", fontSize: "1.5rem" };
-
 const TemplateEditor = ({ actionController }) => {
   const [openModal, setOpenModal] = React.useState(false);
   const recipientName = React.useRef();
@@ -62,18 +60,14 @@ const TemplateEditor = ({ actionController }) => {
       image.alt = "Certificate Preview";
 
       createRoot(document.getElementById("btnContainer")).render(
-        <div className="btn-container">
-          <Button
-            style={{ marginLeft: "1em", marginRight: "1em", ...BUTTON_STYLE }}
-            onClick={() => setOpenModal(true)}
-            text="Transfer"
-          >
+        <>
+          <Button onClick={() => setOpenModal(true)} text="Transfer">
             Transfer
           </Button>
-          <Button style={BUTTON_STYLE} styleType="danger" text="Cancel">
+          <Button styleType="danger" text="Cancel">
             Cancel
           </Button>
-        </div>
+        </>
       );
 
       createRoot(certificateBox).render(image);
@@ -126,10 +120,12 @@ const TemplateEditor = ({ actionController }) => {
               </Draggable>
             </div>
           </div>
-          <div className="btn-container" id="btnContainer">
-            <Button style={BUTTON_STYLE} onClick={generateImage} text="Next">
-              Next
-            </Button>
+          <div className="edit-template-action-area">
+            <div className="edit-template-btn-container" id="btnContainer">
+              <Button onClick={generateImage} text="Next">
+                Next
+              </Button>
+            </div>
           </div>
         </div>
         <div className="tool-menu" id="toolMenu">

@@ -10,6 +10,10 @@
   display: block;
 }
 
+.upload-cert-input-file {
+  display: none;
+}
+
 .upload-container:hover {
   cursor: pointer;
 }
@@ -22,10 +26,6 @@
 .upload-btn {
   display: flex;
   justify-content: center;
-}
-
-input[type="file"] {
-  display: none;
 }
 
 .intruction-btn {
@@ -45,11 +45,30 @@ input[type="file"] {
   font-size: 1.25rem;
 }
 
-.button-set {
+.upload-cert-button-set {
+  width: 20%;
   display: flex;
-  float: right;
-  margin: 1.875rem;
-  gap: 1.875rem;
+  flex-direction: row;
+  align-self: flex-end;
+  gap: 0.9375rem;
+}
+
+.upload-cert-upload-btn {
+  width: 60%;
+  align-self: flex-end;
+}
+
+.upload-cert-upload-btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.625rem;
+}
+
+.upload-cert-cancel-btn {
+  width: 40%;
 }
 
 .header {
@@ -83,23 +102,21 @@ input[type="file"] {
 }
 
 .delete {
-  border: none;
+  border: solid transparent;
+  color: #ffff;
   background-color: #b70b0b;
   border-radius: 0.3125rem;
   padding: 0.625rem 0.9375rem;
-  transition: 0.2s;
-  color: #ffff;
+  transition: all 0.2s;
   font-size: 1.4375rem;
   text-align: end;
 }
 
 .delete:hover {
-  padding: 0.625rem 0.9375rem;
-  border-radius: 0.3125rem;
-  transition: 0.2s;
-  background-color: transparent;
-  border: solid 0.125rem #b70b0b;
+  border: solid #b70b0b;
   color: #b70b0b;
+  transition: 0.2s;
+  background-color: #fff;
 }
 
 .button {
@@ -131,4 +148,10 @@ input[type="file"] {
   transition: 0.3s;
   background-color: #b70b0b;
   color: #ccc;
+}
+
+.upload-cert-content {
+  display: flex;
+  flex-direction: column;
+  margin: 3.75rem 3.75rem 0 3.75rem;
 }

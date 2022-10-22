@@ -82,9 +82,7 @@ const RecipientTable = ({ actionController }) => {
               <Button styleType="danger" text="Cancel">
                 Cancel
               </Button>
-              <Button text="Transfer">
-                Transfer
-              </Button>
+              <Button text="Transfer">Transfer</Button>
             </div>
           </div>
         </Modal>
@@ -166,11 +164,16 @@ const RecipientTable = ({ actionController }) => {
               <tbody>{createTableRows()}</tbody>
             </table>
           </div>
-          <div className="button-set">
-            <Button onClick={() => actionController("toSelectTemplate")} text="Continue">
+          <div className="recipient-table-button-set">
+            <Button
+              onClick={() => actionController("toSelectTemplate")}
+              text="Continue"
+            >
               Continue
             </Button>
-            <Button styleType="danger" text="Cancel">Cancel</Button>
+            <Button styleType="danger" text="Cancel">
+              Cancel
+            </Button>
           </div>
         </div>
       </div>

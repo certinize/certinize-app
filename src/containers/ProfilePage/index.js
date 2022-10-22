@@ -1,4 +1,3 @@
-import Button from "../../components/Button";
 import Header from "../../components/Header/Header";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,9 +19,6 @@ const ProfilePage = () => {
           <div className="profile-text">
             <p>Unnamed User</p>
             <p>Joined since 2022</p>
-          </div>
-          <div className="profile-page-return-btn">
-            <Button>Return Home</Button>
           </div>
         </div>
         <div className="details">
