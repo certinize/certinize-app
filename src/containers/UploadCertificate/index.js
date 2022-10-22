@@ -59,7 +59,7 @@ const UploadCertificate = () => {
   };
 
   return (
-    <section>
+    <>
       <NavBar />
       <Header title="Upload Certificate Template" />
       <div className="upload-cert-content">
@@ -79,7 +79,7 @@ const UploadCertificate = () => {
           </div>
         </div>
         <div className="container mt-5 d-flex justify-content-center">
-          <label className="upload-container">
+          <label className="upload-container" id="uploadContainer">
             <div
               id="dropEcertTemplate"
               onDrop={handleDrop}
@@ -87,9 +87,9 @@ const UploadCertificate = () => {
             >
               <div className="dashed-line">
                 <div className="upload-btn">
-                  <div className="intruction-btn">
+                  <div className="upload-cert-instruction-btn">
                     <AiOutlineFileAdd />
-                    <span>Select file</span>
+                    <span>Select files / Drop files here</span>
                     <input
                       className="upload-cert-input-file"
                       type="file"
@@ -126,7 +126,7 @@ const UploadCertificate = () => {
             })}
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

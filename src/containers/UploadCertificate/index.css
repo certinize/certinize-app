@@ -1,10 +1,6 @@
-.icon {
-  font-size: 2.1875rem;
-}
-
 .upload-container {
   margin: 0;
-  width: 70%;
+  width: 50rem;
   background-color: #5c7a87;
   padding: 2.5rem 2.5rem;
   display: block;
@@ -28,7 +24,7 @@
   justify-content: center;
 }
 
-.intruction-btn {
+.upload-cert-instruction-btn {
   display: flex;
   justify-content: center;
   gap: 0.9375rem;
@@ -41,12 +37,12 @@
   padding: 0.625rem 1.25rem;
   border-radius: 1.875rem;
   transition: 0.4s;
-  width: 60%;
+  width: 25rem;
   font-size: 1.25rem;
 }
 
 .upload-cert-button-set {
-  width: 20%;
+  width: 25rem;
   display: flex;
   flex-direction: row;
   align-self: flex-end;
@@ -125,29 +121,6 @@
   border-radius: 0.625rem;
   color: #ffff;
   width: 70%;
-}
-
-.ctn {
-  background-color: #1a799d;
-  top: 0;
-}
-
-.cancel {
-  color: rgb(0, 0, 0);
-  border: solid 0.0625rem black;
-  background-color: #ffff;
-}
-
-.ctn:hover {
-  transform: scale(1.3);
-  transition: 0.3s;
-}
-
-.cancel:hover {
-  transform: scale(1.3);
-  transition: 0.3s;
-  background-color: #b70b0b;
-  color: #ccc;
 }
 
 .upload-cert-content {
