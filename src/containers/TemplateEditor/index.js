@@ -2,7 +2,7 @@ import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import ToolCategory from "../../components/ToolCategory/ToolCategory";
 import "./index.css";
-import { toPng } from "html-to-image";
+import { toSvg } from "html-to-image";
 import { PropTypes } from "prop-types";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -50,34 +50,33 @@ const TemplateEditor = ({ actionController }) => {
   };
 
   const generateImage = () => {
-    toPng(document.getElementById("certificateBox"), {
+    document.getElementById("toolMenu").remove();
+
+    const certificateBox = document.getElementById("certificateBox");
+
+    toSvg(certificateBox, {
       quality: 1,
-    }).then(function (dataUrl) {
-      let image = new Image();
+    }).then((dataUrl) => {
+      const image = new Image();
       image.src = dataUrl;
       image.alt = "Certificate Preview";
 
-      document.getElementsByClassName("tool-menu")[0].remove();
-
-      let btnContainer = createRoot(
-        document.getElementsByClassName("btn-container")[0]
-      );
-
-      btnContainer.render(
+      createRoot(document.getElementById("btnContainer")).render(
         <div className="btn-container">
           <Button
             style={{ marginLeft: "1em", marginRight: "1em", ...BUTTON_STYLE }}
             onClick={() => setOpenModal(true)}
+            text="Transfer"
           >
             Transfer
           </Button>
-          <Button style={BUTTON_STYLE} styleType="danger">
+          <Button style={BUTTON_STYLE} styleType="danger" text="Cancel">
             Cancel
           </Button>
         </div>
       );
 
-      document.getElementById("certificateBox").replaceWith(image);
+      createRoot(certificateBox).render(image);
     });
   };
 
@@ -94,8 +93,13 @@ const TemplateEditor = ({ actionController }) => {
           </div>
           <div className="modal-btn-group">
             <div className="btn-group-col">
-              <Button styleType="danger">Cancel</Button>
-              <Button onClick={() => actionController("toSendIssueRequest")}>
+              <Button styleType="danger" text="Cancel">
+                Cancel
+              </Button>
+              <Button
+                onClick={() => actionController("toSendIssueRequest")}
+                text="Transfer"
+              >
                 Transfer
               </Button>
             </div>
@@ -122,13 +126,13 @@ const TemplateEditor = ({ actionController }) => {
               </Draggable>
             </div>
           </div>
-          <div className="btn-container">
-            <Button style={BUTTON_STYLE} onClick={generateImage}>
+          <div className="btn-container" id="btnContainer">
+            <Button style={BUTTON_STYLE} onClick={generateImage} text="Next">
               Next
             </Button>
           </div>
         </div>
-        <div className="tool-menu">
+        <div className="tool-menu" id="toolMenu">
           <ToolCategory
             label={"Recipient Name"}
             first={FONT_STYLES}

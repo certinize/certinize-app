@@ -17,7 +17,6 @@ const RecipientTable = ({ actionController }) => {
 
   const createTableRows = () => {
     return recipientList.map((recipient, index) => {
-      console.log(recipient);
       return (
         <tr key={index}>
           <td>{index}</td>
@@ -29,6 +28,7 @@ const RecipientTable = ({ actionController }) => {
               styleType="danger"
               onClick={() => deleteRecipient(index)}
               style={{ height: "2.5rem", width: "6.25rem" }}
+              text="Delete"
             >
               Delete
             </Button>
@@ -79,11 +79,11 @@ const RecipientTable = ({ actionController }) => {
           </div>
           <div className="modal-btn-group">
             <div className="btn-group-col">
-              <Button styleType="danger">
-                <span>Cancel</span>
+              <Button styleType="danger" text="Cancel">
+                Cancel
               </Button>
-              <Button>
-                <span>Transfer</span>
+              <Button text="Transfer">
+                Transfer
               </Button>
             </div>
           </div>
@@ -138,6 +138,7 @@ const RecipientTable = ({ actionController }) => {
             <Button
               type="submit"
               style={{ margin: 0, width: "6.25rem", height: "3.125rem" }}
+              text="Add"
             >
               Add
             </Button>
@@ -166,10 +167,10 @@ const RecipientTable = ({ actionController }) => {
             </table>
           </div>
           <div className="button-set">
-            <Button onClick={() => actionController("toSelectTemplate")}>
+            <Button onClick={() => actionController("toSelectTemplate")} text="Continue">
               Continue
             </Button>
-            <Button styleType="danger">Cancel</Button>
+            <Button styleType="danger" text="Cancel">Cancel</Button>
           </div>
         </div>
       </div>

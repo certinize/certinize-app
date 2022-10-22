@@ -1,10 +1,8 @@
-import { GATEWAY_URL } from "../../api";
 import "./SideNavBar.css";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
 const SideNavBar = (props) => {
-  console.log(`GATEWAY_URL: ${GATEWAY_URL}`);
   const [isExpanded, setExpendState] = useState(false);
   const menuItems = [
     {

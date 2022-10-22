@@ -55,7 +55,7 @@ Button.propTypes = {
   className: PropTypes.string,
   type: PropTypes.string,
   style: PropTypes.object,
-  styleType: PropTypes.string.isRequired,
+  styleType: PropTypes.string,
   onClick: PropTypes.func,
 };
 

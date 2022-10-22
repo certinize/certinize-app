@@ -17,12 +17,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 3.75rem;
 }
 
 .box {
-  width: 1280px;
-  height: 780px;
-  border: 1px solid black;
+  width: 80rem;
+  height: 48.75rem;
+  border: 0.0625rem solid black;
   position: relative;
 }
 
@@ -69,24 +70,24 @@
 
 @media screen and (max-width: 600px) {
   .tool-menu {
-    height: 600px;
+    height: 37.5rem;
   }
 }
 
 @media screen and (max-width: 768px) {
   .tool-menu {
-    height: 768px;
+    height: 48rem;
   }
 }
 
 @media screen and (max-width: 992px) {
   .tool-menu {
-    height: 992px;
+    height: 62rem;
   }
 }
 
 @media screen and (max-width: 1200px) {
   .tool-menu {
-    height: 1200px;
+    height: 75rem;
   }
 }
