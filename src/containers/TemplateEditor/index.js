@@ -70,9 +70,11 @@ const TemplateEditor = ({ actionController }) => {
         </>
       );
 
-      createRoot(certificateBox).render(image);
+      certificateBox.replaceWith(image);
     });
   };
+
+  // TODO: Attach a tip on a draggable component, e.g, "Drag to move". Remove it on drag.
 
   return (
     <>
