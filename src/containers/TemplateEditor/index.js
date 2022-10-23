@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import ToolCategory from "../../components/ToolCategory/ToolCategory";
@@ -7,6 +8,7 @@ import { PropTypes } from "prop-types";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import Draggable from "react-draggable";
+import { useSelector } from "react-redux";
 
 const FONT_STYLES = [
   { value: "arial", label: "Arial" },
@@ -31,28 +33,40 @@ const FONT_SIZES = [
   { value: "38", label: "38" },
   { value: "40", label: "40" },
   { value: "64", label: "64" },
-  { value: "70", label: "70" },
 ];
 
+const FONT_STYLE_DEFAULT = FONT_STYLES[0];
+const FONT_SIZE_DEFAULT = FONT_SIZES[14];
+
 const TemplateEditor = ({ actionController }) => {
+  const selectedTemplate = useSelector(
+    (state) => state.template.selectedTemplate
+  );
   const [openModal, setOpenModal] = React.useState(false);
+  const [nameFontStyle, setNameFontStyle] = React.useState(
+    FONT_STYLE_DEFAULT.value
+  );
+  const [dateFontStyle, setDateFontStyle] = React.useState(
+    FONT_STYLE_DEFAULT.value
+  );
+  const [nameFontSize, setNameFontSize] = React.useState(
+    FONT_SIZE_DEFAULT.value
+  );
+  const [dateFontSize, setDateFontSize] = React.useState(
+    FONT_SIZE_DEFAULT.value
+  );
+
+  const [hasTemplateSize, setHasTemplateSize] = React.useState(false);
   const recipientName = React.useRef();
   const date = React.useRef();
-
-  const updateFontSize = (ref, fontSize = 12) => {
-    ref.current.style.fontSize = `${fontSize}px`;
-  };
-
-  const updateFontStyle = (ref, fontStyle = "arial") => {
-    ref.current.style.fontFamily = fontStyle;
-  };
 
   const generateImage = () => {
     document.getElementById("toolMenu").remove();
 
-    const certificateBox = document.getElementById("certificateBox");
+    const templateBox = document.getElementById("templateBox");
+    templateBox.style.border = "none";
 
-    toSvg(certificateBox, {
+    toSvg(templateBox, {
       quality: 1,
     }).then((dataUrl) => {
       const image = new Image();
@@ -70,9 +84,40 @@ const TemplateEditor = ({ actionController }) => {
         </>
       );
 
-      certificateBox.replaceWith(image);
+      templateBox.replaceWith(image);
     });
   };
+
+  const getTemplateSize = () => {
+    const img = new Image();
+    img.src = selectedTemplate.payload
+      ? selectedTemplate.payload.templateUrl
+      : selectedTemplate.templateUrl;
+    img.onload = () => {
+      // Convert sizes to rem
+      const width = img.width / 16;
+      const height = img.height / 16;
+
+      // Add aditional 4 rem to the width and height to account for the border
+      document.getElementById("templateBox").style.width = `${width + 4}rem`;
+      document.getElementById("templateBox").style.height = `${height + 4}rem`;
+    };
+  };
+
+  React.useEffect(() => {
+    if (!hasTemplateSize) {
+      getTemplateSize();
+      setHasTemplateSize(true);
+    }
+
+    const nameStyle = recipientName.current.style;
+    const dateStyle = date.current.style;
+
+    nameStyle.fontSize = `${nameFontSize}px`;
+    nameStyle.fontFamily = nameFontStyle;
+    dateStyle.fontSize = `${dateFontSize}px`;
+    dateStyle.fontFamily = dateFontStyle;
+  }, [nameFontSize, nameFontStyle, dateFontSize, dateFontStyle]);
 
   // TODO: Attach a tip on a draggable component, e.g, "Drag to move". Remove it on drag.
 
@@ -105,7 +150,14 @@ const TemplateEditor = ({ actionController }) => {
       <div className="primary-container">
         <div className="editor-container">
           <div className="ecert-container">
-            <div className="box" id="certificateBox">
+            <div id="templateBox">
+              <img
+                src={
+                  selectedTemplate.payload
+                    ? selectedTemplate.payload.templateUrl
+                    : selectedTemplate.templateUrl
+                }
+              />
               <Draggable bounds="parent" defaultPosition={{ x: 0, y: 0 }}>
                 <div className="handle" ref={recipientName}>
                   <div className="box__title">
@@ -113,7 +165,7 @@ const TemplateEditor = ({ actionController }) => {
                   </div>
                 </div>
               </Draggable>
-              <Draggable bounds="parent" defaultPosition={{ x: 0, y: 20 }}>
+              <Draggable bounds="parent" defaultPosition={{ x: 0, y: 100 }}>
                 <div className="handle" ref={date}>
                   <div className="box__title">
                     <p className="date">MM/DD/YYYY</p>
@@ -135,22 +187,26 @@ const TemplateEditor = ({ actionController }) => {
             label={"Recipient Name"}
             first={FONT_STYLES}
             second={FONT_SIZES}
+            styleDefaultValue={FONT_STYLE_DEFAULT}
+            sizeDefaultValue={FONT_SIZE_DEFAULT}
             firstCallback={(option) => {
-              updateFontStyle(recipientName, option.value);
+              setNameFontStyle(option.value);
             }}
             secondCallback={(option) => {
-              updateFontSize(recipientName, option.value);
+              setNameFontSize(option.value);
             }}
           />
           <ToolCategory
             label={"Date"}
             first={FONT_STYLES}
             second={FONT_SIZES}
+            styleDefaultValue={FONT_STYLE_DEFAULT}
+            sizeDefaultValue={FONT_SIZE_DEFAULT}
             firstCallback={(option) => {
-              updateFontStyle(date, option.value);
+              setDateFontStyle(option.value);
             }}
             secondCallback={(option) => {
-              updateFontSize(date, option.value);
+              setDateFontSize(option.value);
             }}
           />
         </div>

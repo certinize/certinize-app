@@ -9,6 +9,8 @@ export default function ToolCategory({
   second,
   firstCallback,
   secondCallback,
+  styleDefaultValue,
+  sizeDefaultValue,
 }) {
   return (
     <div className="tool-category">
@@ -21,10 +23,7 @@ export default function ToolCategory({
           className="select-option"
           options={first}
           isSearchable={false}
-          defaultValue={{
-            value: "arial",
-            label: "Arial",
-          }}
+          defaultValue={styleDefaultValue}
           id="style"
           onChange={(option) => {
             firstCallback(option);
@@ -37,6 +36,7 @@ export default function ToolCategory({
           className="select-option"
           options={second}
           id="size"
+          defaultValue={sizeDefaultValue}
           onChange={(option) => {
             secondCallback(option);
           }}
@@ -53,4 +53,6 @@ ToolCategory.propTypes = {
   second: PropTypes.array.isRequired,
   firstCallback: PropTypes.func.isRequired,
   secondCallback: PropTypes.func.isRequired,
+  styleDefaultValue: PropTypes.object,
+  sizeDefaultValue: PropTypes.object,
 };

@@ -1,18 +1,31 @@
+/* eslint-disable no-unused-vars */
+import { getTemplates } from "../../api/TemplateAPI";
 import Button from "../../components/Button";
 import Header from "../../components/Header/Header";
 import NavBar from "../../components/NavBar";
+import Thumbnail from "../../components/Thumbnail";
+import { setTemplates } from "../../features/template/templateSlice";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { AiOutlineUpload } from "react-icons/ai";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const CollectionCertificate = () => {
+  const templates = useSelector((state) => state.template.templates);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onClick = () => {
     navigate("/upload-certificate");
   };
+
+  React.useEffect(() => {
+    getTemplates().then((res) => {
+      dispatch(setTemplates(res.templates));
+    });
+  });
 
   return (
     <>
@@ -29,21 +42,10 @@ const CollectionCertificate = () => {
           </Button>
         </div>
 
-        <div className="col-cert-template-container">
-          <a href="#thumb" aria-label="Certificate Template Thumbnail">
-            <img
-              className="certi"
-              src="./img/certificate.jpg"
-              alt="Template Thumbnail"
-            />
-          </a>
-          <a href="#thumb" aria-label="Certificate Template Thumbnail">
-            <img
-              className="certi"
-              src="./img/certificate.jpg"
-              alt="Template Thumbnail"
-            />
-          </a>
+        <div className="col-cert-thumbnail-container">
+          {templates.map((template, index) => {
+            return <Thumbnail key={index} src={template.template_url} />;
+          })}
         </div>
       </div>
     </>

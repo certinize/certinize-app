@@ -1,11 +1,14 @@
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
+import { addRecipient } from "../../features/issuance/issuanceSlice";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { PropTypes } from "prop-types";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 const RecipientTable = ({ actionController }) => {
+  const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [recipientList, setRecipientList] = useState([]);
 
@@ -18,8 +21,8 @@ const RecipientTable = ({ actionController }) => {
   const createTableRows = () => {
     return recipientList.map((recipient, index) => {
       return (
-        <tr key={index}>
-          <td>{index}</td>
+        <tr className="recipient-table-tr" key={index}>
+          <td>{index + 1}</td>
           <td>{recipient[0]}</td>
           <td>{recipient[1]}</td>
           <td>{recipient[2]}</td>
@@ -58,6 +61,19 @@ const RecipientTable = ({ actionController }) => {
     }
   };
 
+  const handleContinue = () => {
+    recipientList.forEach((recipient) => {
+      const recipientObj = {
+        recipient_name: recipient[0],
+        recipient_pubkey: recipient[1],
+        recipient_email: recipient[2],
+      };
+      dispatch(addRecipient(recipientObj));
+    });
+
+    actionController("toSelectTemplate");
+  };
+
   React.useEffect(() => {
     document.addEventListener("keydown", handleEscape, false);
 
@@ -67,7 +83,7 @@ const RecipientTable = ({ actionController }) => {
   }, []);
 
   return (
-    <div>
+    <div className="recipient-table-container">
       <div className="certinize-modal" id="modal">
         <Modal
           open={openModal}
@@ -95,12 +111,15 @@ const RecipientTable = ({ actionController }) => {
             id="recipientForm"
           >
             <div className="form-group mx-2">
-              <label className="form-label" htmlFor="recipientName">
+              <label
+                className="form-label recipient-table-label"
+                htmlFor="recipientName"
+              >
                 Full Name
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control recipient-table-input"
                 name="recipientName"
                 id="recipientName"
                 aria-describedby="recipient-name"
@@ -108,12 +127,15 @@ const RecipientTable = ({ actionController }) => {
               />
             </div>
             <div className="form-group mx-2">
-              <label className="form-label" htmlFor="walletAddress">
+              <label
+                className="form-label recipient-table-label"
+                htmlFor="walletAddress"
+              >
                 Wallet Address
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control  recipient-table-input"
                 name="walletAddress"
                 id="walletAddress"
                 aria-describedby="wallet-address"
@@ -121,12 +143,15 @@ const RecipientTable = ({ actionController }) => {
               />
             </div>
             <div className="form-group mx-2">
-              <label className="form-label" htmlFor="walletAddress">
+              <label
+                className="form-label recipient-table-label"
+                htmlFor="walletAddress"
+              >
                 Email
               </label>
               <input
                 type="email"
-                className="form-control"
+                className="form-control recipient-table-input"
                 name="emailAddress"
                 id="emailAddress"
                 aria-describedby="email-address"
@@ -142,10 +167,10 @@ const RecipientTable = ({ actionController }) => {
             </Button>
           </form>
 
-          <div className="user-table">
+          <div className="recipient-table-user-view">
             <table className="table table-borderless table-hover table-responsive">
               <thead>
-                <tr>
+                <tr className="recipient-table-tr">
                   <th className="number-col">
                     <p>#</p>
                   </th>
@@ -165,10 +190,7 @@ const RecipientTable = ({ actionController }) => {
             </table>
           </div>
           <div className="recipient-table-button-set">
-            <Button
-              onClick={() => actionController("toSelectTemplate")}
-              text="Continue"
-            >
+            <Button onClick={handleContinue} text="Continue">
               Continue
             </Button>
             <Button styleType="danger" text="Cancel">

@@ -67,15 +67,6 @@
   width: 40%;
 }
 
-.header {
-  margin-top: 1.25rem;
-  text-align: center;
-  font-size: 2rem;
-  color: #0d4b65;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
 .file-preview {
   display: block;
   text-align: center;

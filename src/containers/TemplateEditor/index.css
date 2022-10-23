@@ -20,11 +20,12 @@
   margin-top: 3.75rem;
 }
 
-.box {
-  width: 80rem;
-  height: 48.75rem;
-  border: 0.0625rem solid black;
+#templateBox {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1rem solid #1c3843;
 }
 
 .handle {
