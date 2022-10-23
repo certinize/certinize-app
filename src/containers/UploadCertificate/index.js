@@ -1,3 +1,4 @@
+import { createTemplate } from "../../api/TemplateAPI";
 import Button from "../../components/Button";
 import Header from "../../components/Header/Header";
 import NavBar from "../../components/NavBar";
@@ -11,7 +12,8 @@ import {
 } from "react-icons/ai";
 
 const UploadCertificate = () => {
-  const [selectedFiles, setselectedFiles] = useState([]);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [toUpload, setToUpload] = useState([]);
 
   const onSelectFile = (e) => {
     const selectedFiles = e.target.files;
@@ -20,14 +22,14 @@ const UploadCertificate = () => {
       return URL.createObjectURL(file);
     });
 
-    setselectedFiles((previousFiles) => previousFiles.concat(filesArray));
+    setSelectedFiles((previousFiles) => previousFiles.concat(filesArray));
 
     // FOR BUG IN CHROME
     e.target.value = "";
   };
 
   const deleteHandler = (file) => {
-    setselectedFiles(selectedFiles.filter((e) => e !== file));
+    setSelectedFiles(selectedFiles.filter((e) => e !== file));
     URL.revokeObjectURL(file);
   };
 
@@ -41,15 +43,18 @@ const UploadCertificate = () => {
       [...e.dataTransfer.items].forEach((item) => {
         if (item.kind === "file") {
           const file = item.getAsFile();
-          setselectedFiles((previousFiles) => [
+          setSelectedFiles((previousFiles) => [
             ...previousFiles,
             URL.createObjectURL(file),
           ]);
         }
       });
     } else {
-      [...e.dataTransfer.files].forEach((file, i) => {
-        console.log(`file[${i}].name = ${file.name}`);
+      [...e.dataTransfer.files].forEach((file) => {
+        setSelectedFiles((previousFiles) => [
+          ...previousFiles,
+          URL.createObjectURL(file),
+        ]);
       });
     }
   };
@@ -58,6 +63,35 @@ const UploadCertificate = () => {
     e.preventDefault();
   };
 
+  const uploadSelectedFiles = () => {
+    selectedFiles.forEach((file) => {
+      fetch(file)
+        .then((res) => res.blob())
+        .then((blob) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(blob);
+          reader.onloadend = () => {
+            setToUpload((previousFiles) => [
+              ...previousFiles,
+              reader.result.split(",")[1],
+            ]);
+          };
+        });
+    });
+
+    setToUpload([]);
+  };
+
+  React.useEffect(() => {
+    if (toUpload.length > 0 && toUpload.length === selectedFiles.length) {
+      console.log({ templates: toUpload });
+      createTemplate({ image: toUpload }).then((res) => {
+        console.log(res);
+      });
+      setSelectedFiles([]);
+    }
+  }, [toUpload]);
+
   return (
     <>
       <NavBar />
@@ -65,7 +99,7 @@ const UploadCertificate = () => {
       <div className="upload-cert-content">
         <div className="upload-cert-button-set">
           <div className="upload-cert-upload-btn">
-            <Button text="Upload Selected">
+            <Button text="Upload Selected" onClick={uploadSelectedFiles}>
               <div className="upload-cert-upload-btn-content">
                 <AiOutlineUpload />
                 <span>Upload Selected</span>
