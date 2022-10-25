@@ -22,9 +22,11 @@ const CollectionCertificate = () => {
   };
 
   React.useEffect(() => {
-    getTemplates().then((res) => {
-      dispatch(setTemplates(res.templates));
-    });
+    if (templates.length === 0) {
+      getTemplates().then((res) => {
+        dispatch(setTemplates(res.templates));
+      });
+    }
   });
 
   return (
