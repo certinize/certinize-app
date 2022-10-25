@@ -1,7 +1,7 @@
-import { getPath } from "./Common";
+import { get } from "./index";
 
 const FONTS = "fonts";
 
 export async function getAllFonts() {
-  return await getPath(FONTS);
+  return await get(FONTS);
 }

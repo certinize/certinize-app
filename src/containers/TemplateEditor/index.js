@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { getAllFonts } from "../../api/FontAPI";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import ToolCategory from "../../components/ToolCategory/ToolCategory";
@@ -10,11 +11,7 @@ import { createRoot } from "react-dom/client";
 import Draggable from "react-draggable";
 import { useSelector } from "react-redux";
 
-const FONT_STYLES = [
-  { value: "arial", label: "Arial" },
-  { value: "times", label: "Times New Roman" },
-  { value: "courier", label: "Courier New" },
-];
+const FONT_FILE_FORMATS = [".ttf"];
 
 const FONT_SIZES = [
   { value: "12", label: "12" },
@@ -35,17 +32,18 @@ const FONT_SIZES = [
   { value: "64", label: "64" },
 ];
 
-const FONT_STYLE_DEFAULT = FONT_STYLES[0];
+const FONT_STYLE_DEFAULT = { value: "arial", label: "Arial" };
 const FONT_SIZE_DEFAULT = FONT_SIZES[14];
 
 const TemplateEditor = ({ actionController }) => {
   const selectedTemplate = useSelector(
     (state) => state.template.selectedTemplate
   );
+
+  const [fontStyles, setFontStyles] = React.useState([]);
+  const [hasFontStyles, setHasFontStyles] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
-  const [nameFontStyle, setNameFontStyle] = React.useState(
-    FONT_STYLE_DEFAULT.value
-  );
+  const [nameFontStyle, setNameFontStyle] = React.useState("arial");
   const [dateFontStyle, setDateFontStyle] = React.useState(
     FONT_STYLE_DEFAULT.value
   );
@@ -55,8 +53,8 @@ const TemplateEditor = ({ actionController }) => {
   const [dateFontSize, setDateFontSize] = React.useState(
     FONT_SIZE_DEFAULT.value
   );
-
   const [hasTemplateSize, setHasTemplateSize] = React.useState(false);
+
   const recipientName = React.useRef();
   const date = React.useRef();
 
@@ -104,19 +102,73 @@ const TemplateEditor = ({ actionController }) => {
     };
   };
 
+  const createFontFace = (fontStyles) => {
+    const style = document.createElement("style");
+    style.innerHTML = fontStyles
+      .map(
+        (font) =>
+          `@font-face {
+            font-family: "${font.value}";
+            src: url(${font.url}) format("truetype");});
+          }`
+      )
+      .join("\n");
+    document.getElementsByTagName("head")[0].appendChild(style);
+  };
+
+  const getFontStyles = () => {
+    getAllFonts().then((res) => {
+      const fonts = [];
+
+      res.fonts.forEach((font) => {
+        // Get the file name from the URL
+        const label = new URL(font.font_url).pathname
+          .split("/")
+          .filter(Boolean)
+          .pop();
+
+        // Remove file extension using the file formats array
+        const decodedLabel = decodeURIComponent(label).replace(
+          new RegExp(FONT_FILE_FORMATS.join("|"), "g"),
+          ""
+        );
+
+        fonts.push({
+          value: decodedLabel,
+          label: decodedLabel,
+          url: font.font_url,
+          id: font.font_id,
+        });
+      });
+
+      setFontStyles(fonts);
+      createFontFace(fonts);
+    });
+  };
+
+  const updateTemplateFonts = () => {
+    const nameStyle = recipientName.current.style;
+    const dateStyle = date.current.style;
+
+    nameStyle.fontSize = `${nameFontSize}px`;
+    nameStyle.fontFamily = nameFontStyle;
+
+    dateStyle.fontSize = `${dateFontSize}px`;
+    dateStyle.fontFamily = dateFontStyle;
+  };
+
   React.useEffect(() => {
     if (!hasTemplateSize) {
       getTemplateSize();
       setHasTemplateSize(true);
     }
 
-    const nameStyle = recipientName.current.style;
-    const dateStyle = date.current.style;
+    if (!hasFontStyles) {
+      getFontStyles();
+      setHasFontStyles(true);
+    }
 
-    nameStyle.fontSize = `${nameFontSize}px`;
-    nameStyle.fontFamily = nameFontStyle;
-    dateStyle.fontSize = `${dateFontSize}px`;
-    dateStyle.fontFamily = dateFontStyle;
+    updateTemplateFonts();
   }, [nameFontSize, nameFontStyle, dateFontSize, dateFontStyle]);
 
   // TODO: Attach a tip on a draggable component, e.g, "Drag to move". Remove it on drag.
@@ -185,7 +237,7 @@ const TemplateEditor = ({ actionController }) => {
         <div className="tool-menu" id="toolMenu">
           <ToolCategory
             label={"Recipient Name"}
-            first={FONT_STYLES}
+            first={fontStyles}
             second={FONT_SIZES}
             styleDefaultValue={FONT_STYLE_DEFAULT}
             sizeDefaultValue={FONT_SIZE_DEFAULT}
@@ -198,7 +250,7 @@ const TemplateEditor = ({ actionController }) => {
           />
           <ToolCategory
             label={"Date"}
-            first={FONT_STYLES}
+            first={fontStyles}
             second={FONT_SIZES}
             styleDefaultValue={FONT_STYLE_DEFAULT}
             sizeDefaultValue={FONT_SIZE_DEFAULT}
