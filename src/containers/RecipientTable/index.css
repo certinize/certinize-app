@@ -52,7 +52,7 @@ tr {
   height: 60vh;
 }
 
-.button-set {
+.recipient-table-button-set {
   display: flex;
   float: right;
   margin: 30px;

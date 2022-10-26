@@ -2,7 +2,7 @@ import "./index.css";
 import PropTypes from "prop-types";
 import React from "react";
 
-function Button({ text, type, style, styleType, onClick }) {
+function Button({ children, text, type, style, styleType, onClick }) {
   var className = "certinize-btn-primary";
 
   switch (styleType) {
@@ -38,14 +38,19 @@ function Button({ text, type, style, styleType, onClick }) {
       type={type || "button"}
       style={style}
       onClick={onClick}
+      title={text}
+      aria-label={text}
+      aria-labelledby={text}
+      role="button"
       value={text}
     >
-      {text}
+      {children}
     </button>
   );
 }
 
 Button.propTypes = {
+  children: PropTypes.node,
   text: PropTypes.string.isRequired,
   className: PropTypes.string,
   type: PropTypes.string,

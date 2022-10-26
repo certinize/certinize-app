@@ -1,116 +1,44 @@
-*{
-    margin: 0;
-    padding: 0;
-  }
-h1{
-    padding: 30px;
-    font-style: italic;
-    font-weight: bold;
-    color:#0D4B65;
-}
-.heading{
-    margin-left: 30px;
-}
-.latest{
-    margin-top: 5px;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 30px;
-    color: #608588;
-}
-  
-.btn-container{
-    display: flex;
-    padding: 30px;
-    align-items: center;
+.col-cert-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 3.75rem 3.75rem 0 3.75rem;
 }
 
-.upload{
-	background-color: #1889B6;
-	color: white;
-	text-decoration: none;
-	border: 2px solid transparent;
-	padding: 10px 30px;
-	border-radius: 12px;
-	transition: .4s; 
-    width: 30%;
+.col-cert-upload-btn {
+  width: 18.75rem;
+  align-self: flex-end;
 }
 
-.upload:hover{
-	background-color: transparent;
-	border: 2px solid #1889B6;
-    border-radius: 12px;
-	cursor: pointer;
-    color: #1889B6;
-    font-weight: bold;
+.col-cert-upload-btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.625rem;
 }
 
-.line{
-    margin-top: -20px;
-    margin-left: 130px;
+.col-cert-template-container {
+  margin: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4);
+  grid-gap: 40px;
+  width: 90%;
 }
 
-.icon{
-    font-size: 20px;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    color: #ffff;
-} 
-
-.grid{
-    padding: 6vh;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4);
-    grid-gap: 10vh;
+.certi {
+  height: auto;
+  width: 18.75rem;
+  transition: all 0.5s ease;
+  box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.3125rem 0.9375rem;
 }
 
-.certi{
-    height: auto;
-    width: 300px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.certi:hover {
+  height: auto;
+  width: 18.75rem;
+  transform: scale(1.3);
 }
-.certi:hover{
-    height: auto;
-    transition: 1s;
-    width: 300px;
-    transform: scale(1.3);
-} 
-/* 
-.certi-preview{
-    height: auto;
-    width: 65vh;
-}
-
-.thumbnail {
-    position: relative;
-    z-index: 0;
-  }
-  
-  .thumbnail:hover {
-    background-color: transparent;
-  }
-  
-  .thumbnail span {
-    position: absolute;
-    background-color: lightyellow;
-    padding: 5px;
-    left: -1000px;
-    border: 1px solid gray;
-    visibility: hidden;
-    color: black;
-    text-decoration: none;
-    transition: .5s;
-  }
-  
-  .thumbnail span img {
-    border-width: 0;
-    padding: 2px;
-  }
-  
-  .thumbnail:hover span {
-    visibility: visible;
-    top: 0;
-    left: 1px;
-  } */

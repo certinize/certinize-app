@@ -1,37 +1,52 @@
+import Button from "../../components/Button";
+import Header from "../../components/Header/Header";
+import NavBar from "../../components/NavBar";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-// import { FiUpload } from "react-icons/fi";
-import NavBar from "../../components/NavBar";
-import Button from "../../components/Button";
+import { AiOutlineUpload } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const CollectionCertificate = () => {
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate("/upload-certificate");
+  };
+
   return (
     <>
-      <NavBar/>
-      <h1> Welcome to Certinize </h1>
-        <div className="heading">
-          <h5 className='latest'> Latest recieved</h5>
-            <hr className='line' />
+      <NavBar />
+      <Header title="Welcome to Certinize" />
+
+      <div className="col-cert-container">
+        <div className="col-cert-upload-btn">
+          <Button text="Upload Certificate Template" onClick={onClick}>
+            <div className="col-cert-upload-btn-content">
+              <AiOutlineUpload />
+              <span>Upload Certificate Template</span>
+            </div>
+          </Button>
         </div>
 
-        <Button/>
-
-        <div>
-          <div className="grid">
-
-            <a className="thumbnail" href="#thumb">
-              <img className="certi" src="./img/certificate.jpg"/>
-            </a>
-            <a className="thumbnail" href="#thumb">
-              <img className="certi" src="./img/certificate.jpg"/>
-            </a>
-
-
-          </div>
+        <div className="col-cert-template-container">
+          <a href="#thumb" aria-label="Certificate Template Thumbnail">
+            <img
+              className="certi"
+              src="./img/certificate.jpg"
+              alt="Template Thumbnail"
+            />
+          </a>
+          <a href="#thumb" aria-label="Certificate Template Thumbnail">
+            <img
+              className="certi"
+              src="./img/certificate.jpg"
+              alt="Template Thumbnail"
+            />
+          </a>
         </div>
-  </>
-
+      </div>
+    </>
   );
 };
 
