@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// The issuance slice contains a list of recipients.
-// The list of recipients is a list of objects with the following properties:
+// The recipients state is a list of objects with the following properties:
 // - recipient_email: the email address of the recipient
 // - recipient_name: the name of the recipient
 // - recipient_pubkey: the public key of the recipient
@@ -10,17 +9,23 @@ export const issuanceSlice = createSlice({
   name: "issuance",
   initialState: {
     recipients: [],
+    issuanceDate: "",
   },
   reducers: {
     addRecipient: (state, action) => {
       state.recipients.push(action.payload);
     },
-    clearRecipients: (state) => {
+    setIssuanceDate: (state, action) => {
+      state.issuanceDate = action.payload;
+    },
+    resetIssuance: (state) => {
       state.recipients = [];
+      state.issuanceDate = "";
     },
   },
 });
 
-export const { addRecipient, clearRecipients } = issuanceSlice.actions;
+export const { addRecipient, setIssuanceDate, resetIssuance } =
+  issuanceSlice.actions;
 
 export default issuanceSlice.reducer;

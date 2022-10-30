@@ -20,10 +20,18 @@
 }
 
 .profile-text {
-  margin-top: 1.875rem;
+  margin-top: 1rem;
+  padding: 1rem;
   text-align: center;
   line-height: 1.25rem;
   color: #1c3843;
+  max-width: 37.5rem;
+  white-space: wrap;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-text :nth-child(1) {
@@ -39,6 +47,7 @@
   font-size: 1.0625rem;
   font-weight: bold;
   color: #a5a5a5;
+  margin: 1rem;
 }
 
 .profile-page-form {

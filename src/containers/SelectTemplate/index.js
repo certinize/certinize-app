@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
+import { getTemplates } from "../../api/TemplateAPI";
 import Button from "../../components/Button";
 import Thumbnail from "../../components/Thumbnail";
 import { setSelectedTemplate } from "../../features/template/templateSlice";
+import { setTemplates } from "../../features/template/templateSlice";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { PropTypes } from "prop-types";
@@ -15,6 +17,14 @@ const SelectTemplate = ({ actionController }) => {
     (state) => state.template.selectedTemplate
   );
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (templates.length === 0) {
+      getTemplates().then((res) => {
+        dispatch(setTemplates(res.templates));
+      });
+    }
+  }, [dispatch, templates]);
 
   const createTemplatePreviews = () => {
     return templates.map((template, index) => {

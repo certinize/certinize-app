@@ -32,7 +32,7 @@ const CollectionCertificate = () => {
   return (
     <>
       <NavBar />
-      <Header title="Welcome to Certinize" />
+      <Header title="Certificate Templates" />
 
       <div className="col-cert-container">
         <div className="col-cert-upload-btn">

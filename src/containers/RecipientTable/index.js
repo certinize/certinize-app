@@ -1,7 +1,9 @@
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import { addRecipient } from "../../features/issuance/issuanceSlice";
+import { setIssuanceDate } from "../../features/issuance/issuanceSlice";
 import "./index.css";
+import { PublicKey } from "@solana/web3.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { PropTypes } from "prop-types";
 import React, { useState } from "react";
@@ -11,6 +13,7 @@ const RecipientTable = ({ actionController }) => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [recipientList, setRecipientList] = useState([]);
+  const [date, setDate] = useState("");
 
   const deleteRecipient = (index) => {
     const newRecipientList = [...recipientList];
@@ -44,6 +47,15 @@ const RecipientTable = ({ actionController }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
+    const walletAddress = e.target.walletAddress.value;
+
+    try {
+      if (!PublicKey.isOnCurve(new PublicKey(walletAddress))) throw new Error();
+    } catch (error) {
+      alert("Invalid recipient wallet address");
+      return;
+    }
+
     const recipient = [
       e.target.elements.recipientName.value,
       e.target.elements.walletAddress.value,
@@ -62,6 +74,11 @@ const RecipientTable = ({ actionController }) => {
   };
 
   const handleContinue = () => {
+    if (recipientList.length === 0 || date === "") {
+      alert("Please fill in all the fields");
+      return;
+    }
+
     recipientList.forEach((recipient) => {
       const recipientObj = {
         recipient_name: recipient[0],
@@ -69,6 +86,7 @@ const RecipientTable = ({ actionController }) => {
         recipient_email: recipient[2],
       };
       dispatch(addRecipient(recipientObj));
+      dispatch(setIssuanceDate(date));
     });
 
     actionController("toSelectTemplate");
@@ -103,99 +121,122 @@ const RecipientTable = ({ actionController }) => {
           </div>
         </Modal>
       </div>
-      <div className="d-flex justify-content-center align-items-start mt-5">
-        <div className="w-75">
-          <form
-            className="content-form"
-            onSubmit={handleOnSubmit}
-            id="recipientForm"
+      <div className="d-flex align-items-center w-100 recipient-table-input-fields mt-5">
+        <div className="form-group w-25">
+          <label
+            className="form-label recipient-table-label"
+            htmlFor="issuanceDate"
           >
-            <div className="form-group mx-2">
-              <label
-                className="form-label recipient-table-label"
-                htmlFor="recipientName"
-              >
-                Full Name
-              </label>
-              <input
-                type="text"
-                className="form-control recipient-table-input"
-                name="recipientName"
-                id="recipientName"
-                aria-describedby="recipient-name"
-                placeholder="Enter Full Name"
-              />
-            </div>
-            <div className="form-group mx-2">
-              <label
-                className="form-label recipient-table-label"
-                htmlFor="walletAddress"
-              >
-                Wallet Address
-              </label>
-              <input
-                type="text"
-                className="form-control  recipient-table-input"
-                name="walletAddress"
-                id="walletAddress"
-                aria-describedby="wallet-address"
-                placeholder="Enter Wallet Address"
-              />
-            </div>
-            <div className="form-group mx-2">
-              <label
-                className="form-label recipient-table-label"
-                htmlFor="walletAddress"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                className="form-control recipient-table-input"
-                name="emailAddress"
-                id="emailAddress"
-                aria-describedby="email-address"
-                placeholder="Enter Email"
-              />
-            </div>
-            <Button
-              type="submit"
-              style={{ margin: 0, width: "6.25rem", height: "3.125rem" }}
-              text="Add"
+            Issuance Date
+          </label>
+          <input
+            type="date"
+            className="form-control recipient-table-input"
+            name="issuanceDate"
+            id="issuanceDate"
+            aria-describedby="issuance-date"
+            placeholder="Enter certificate issuance date"
+            onChange={(e) => {
+              setDate(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="d-flex justify-content-center align-items-start mt-5 w-100">
+          <div className="w-75">
+            <form
+              className="content-form"
+              onSubmit={handleOnSubmit}
+              id="recipientForm"
             >
-              Add
-            </Button>
-          </form>
+              <div className="form-group mx-2">
+                <label
+                  className="form-label recipient-table-label"
+                  htmlFor="recipientName"
+                >
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control recipient-table-input"
+                  name="recipientName"
+                  id="recipientName"
+                  aria-describedby="recipient-name"
+                  placeholder="Enter Full Name"
+                  required
+                />
+              </div>
+              <div className="form-group mx-2">
+                <label
+                  className="form-label recipient-table-label"
+                  htmlFor="walletAddress"
+                >
+                  Wallet Address
+                </label>
+                <input
+                  type="text"
+                  className="form-control  recipient-table-input"
+                  name="walletAddress"
+                  id="walletAddress"
+                  aria-describedby="wallet-address"
+                  placeholder="Enter Wallet Address"
+                  required
+                />
+              </div>
+              <div className="form-group mx-2">
+                <label
+                  className="form-label recipient-table-label"
+                  htmlFor="walletAddress"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  className="form-control recipient-table-input"
+                  name="emailAddress"
+                  id="emailAddress"
+                  aria-describedby="email-address"
+                  placeholder="Enter Email"
+                  required
+                />
+              </div>
+              <div className="recipient-table-add-btn">
+                <Button type="submit" text="Add">
+                  Add
+                </Button>
+              </div>
+            </form>
 
-          <div className="recipient-table-user-view">
-            <table className="table table-borderless table-hover table-responsive">
-              <thead>
-                <tr className="recipient-table-tr">
-                  <th className="number-col">
-                    <p>#</p>
-                  </th>
-                  <th className="w-25">
-                    <p>Name</p>
-                  </th>
-                  <th className="w-25">
-                    <p>Wallet Address</p>
-                  </th>
-                  <th className="w-25">
-                    <p>Email</p>
-                  </th>
-                  <th className="w-25"></th>
-                </tr>
-              </thead>
-              <tbody>{createTableRows()}</tbody>
-            </table>
-          </div>
-          <div className="recipient-table-button-set">
-            <Button onClick={handleContinue} text="Continue">
-              Continue
-            </Button>
-            <Button styleType="danger" text="Cancel">
-              Cancel
-            </Button>
+            <div className="recipient-table-user-view">
+              <table className="table table-borderless table-hover table-responsive">
+                <thead>
+                  <tr className="recipient-table-tr">
+                    <th className="number-col">
+                      <p>#</p>
+                    </th>
+                    <th className="w-25">
+                      <p>Name</p>
+                    </th>
+                    <th className="w-25">
+                      <p>Wallet Address</p>
+                    </th>
+                    <th className="w-25">
+                      <p>Email</p>
+                    </th>
+                    <th className="w-25"></th>
+                  </tr>
+                </thead>
+                <tbody>{createTableRows()}</tbody>
+              </table>
+            </div>
+            <div className="recipient-table-button-set">
+              <Button onClick={handleContinue} text="Continue">
+                Continue
+              </Button>
+              <Button styleType="danger" text="Cancel">
+                Cancel
+              </Button>
+            </div>
           </div>
         </div>
       </div>

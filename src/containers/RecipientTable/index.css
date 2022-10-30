@@ -18,12 +18,12 @@
 }
 
 .recipient-table-user-view {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   align-content: center;
-  border: solid 1px #0d4b65;
-  border-radius: 20px;
-  padding: 10px;
-  box-shadow: 12px 15px;
+  border: solid 0.0625rem #0d4b65;
+  border-radius: 1.25rem;
+  padding: 0.625rem;
+  box-shadow: 0.75rem 0.9375rem;
   height: 60vh;
 }
 
@@ -34,8 +34,8 @@
 .recipient-table-button-set {
   display: flex;
   float: right;
-  margin: 30px;
-  gap: 30px;
+  margin: 1.875rem;
+  gap: 1.875rem;
 }
 
 .content-form {
@@ -76,7 +76,7 @@
 }
 
 .btn-group-col {
-  gap: 10px;
+  gap: 0.625rem;
   width: 50%;
   display: flex;
   flex-direction: row;
@@ -84,4 +84,15 @@
 
 .number-col {
   width: 10%;
+}
+
+.recipient-table-input-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipient-table-add-btn {
+  margin-left: 0.625rem;
+  width: 6.25rem;
+  height: 3.125rem;
 }

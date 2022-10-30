@@ -1,7 +1,9 @@
-import { get } from ".";
+import { getPath } from ".";
 
 const USERS = "users";
 
-export async function authSolanaUser(publicKey) {
-  await get(USERS, publicKey);
-}
+const authSolanaUser = async (pubkey) => {
+  return await getPath(USERS, pubkey);
+};
+
+export { authSolanaUser };

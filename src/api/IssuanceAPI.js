@@ -1,7 +1,9 @@
-import { post } from ".";
+import { getPath } from ".";
 
 const ISSUANCES = "issuances";
 
-export async function createTemplate(uuid) {
-  return await post({ uuid }, ISSUANCES);
-}
+const getUnsignedMessage = async (pubkey) => {
+  return await getPath(ISSUANCES, pubkey);
+};
+
+export { getUnsignedMessage };
