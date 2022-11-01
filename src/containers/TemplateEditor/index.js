@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-vars */
-import { generateEcert } from "../../api/CertificateAPI";
+import { getCert, generateCert } from "../../api/CertificateAPI";
 import { createTemplateConfig } from "../../api/ConfigurationAPI";
 import { getAllFonts } from "../../api/FontAPI";
-import { getUnsignedMessage } from "../../api/IssuanceAPI";
+import { getUnsignedMessage, makeIssuanceRequest } from "../../api/IssuanceAPI";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import ToolCategory from "../../components/ToolCategory/ToolCategory";
-import { resetIssuance } from "../../features/issuance/issuanceSlice";
+import {
+  resetIssuance,
+  overwriteRecipients,
+} from "../../features/issuance/issuanceSlice";
 import { resetSelectedTemplate } from "../../features/template/templateSlice";
 import "./index.css";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -44,12 +47,15 @@ const FONT_SIZE_DEFAULT = FONT_SIZES[14];
 
 const TemplateEditor = ({ actionController }) => {
   const { publicKey, signMessage } = useWallet();
+
+  const dispatch = useDispatch();
   const template = useSelector((state) => state.template);
   const issuance = useSelector((state) => state.issuance);
+  const user = useSelector((state) => state.user);
 
+  // Font and text-related states
   const [fontStyles, setFontStyles] = React.useState([]);
   const [hasFontStyles, setHasFontStyles] = React.useState(false);
-  const [openModal, setOpenModal] = React.useState(false);
   const [nameFontStyle, setNameFontStyle] = React.useState(
     FONT_STYLE_DEFAULT.value
   );
@@ -64,31 +70,82 @@ const TemplateEditor = ({ actionController }) => {
   );
   const [namePosition, setNamePosition] = React.useState({ x: 0, y: 0 });
   const [datePosition, setDatePosition] = React.useState({ x: 0, y: 0 });
+
+  // UI-related states
+  const [openModal, setOpenModal] = React.useState(false);
   const [templateUrl, setTemplateUrl] = React.useState("");
   const [hasTemplateSize, setHasTemplateSize] = React.useState(false);
+
+  // Transaction-related states
+  const [recipients, setRecipients] = React.useState([]);
+  const [hasCreatedCerts, setHasCreatedCerts] = React.useState(false);
+  const [signedMessage, setSignedMessage] = React.useState(null);
 
   const recipientName = React.useRef();
   const date = React.useRef();
 
-  const generateCertificate = (templateConfig) => {
+  const getCertificate = (requestId) => {
+    var cert = null;
+
+    const interval = setInterval(() => {
+      // Unfortuantely, we can't avoid making duplicate requests to the backend due to the async
+      // nature of getCert. Even if we use a flag to check if the certificate has been retrieved,
+      // the flag won't be set until getCert receives a response. By that time, another request
+      // would have been sent to the backend.
+      if (cert !== null) clearInterval(interval);
+
+      getCert(requestId)
+        .then((response) => {
+          if (response.code !== 404) {
+            cert = response;
+            // We have to copy state using JSON. Otherwise, when we try to update the recipients
+            // const, JavaScript will return a TypeError: can't define property "x": "obj" is not
+            // extensible.
+            const recipients = JSON.parse(JSON.stringify(issuance.recipients));
+
+            // Update issuance.recipients with the generated certificate
+            cert.certificate.certificate.forEach((recipient) => {
+              recipients.forEach((recipientObj, index) => {
+                if (recipientObj.recipient_name === recipient.recipient_name) {
+                  recipients[index].recipient_ecert_url =
+                    recipient.certificate_url;
+                }
+              });
+            });
+
+            dispatch(overwriteRecipients(recipients));
+            setHasCreatedCerts(true);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, 2000);
+  };
+
+  const sendGenerateCertRequest = (templateConfigId) => {
     const certificateMeta = {
-      template_config_id: templateConfig.template_config_id,
+      template_config_id: templateConfigId,
       issuance_date: issuance.issuanceDate,
       recipients: issuance.recipients.map((recipient) => ({
         recipient_name: recipient.recipient_name,
       })),
     };
 
-    generateEcert(certificateMeta).then((response) => {
-      console.log(response);
-    });
+    generateCert(certificateMeta)
+      .then((response) => {
+        getCertificate(response.request_id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   // With the current backend implementation, we have to create a new template config first using
   // the /configurations endpoint. After that, we have to make a request to the /certificates to
   // generate the certificates. Then we can make a request to the /issuance endpoint to issue the
   // certificates.
-  const createTemplConf = () => {
+  const generateCertificate = () => {
     const templateConfig = {
       recipient_name_meta: {
         position: {
@@ -110,44 +167,69 @@ const TemplateEditor = ({ actionController }) => {
       template_config_name: Math.random().toString(36).substring(2, 15),
     };
 
-    createTemplateConfig(templateConfig).then((response) => {
-      generateCertificate(response);
-    });
+    createTemplateConfig(templateConfig)
+      .then((response) => {
+        sendGenerateCertRequest(response.template_config_id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  const issueCertificate = (issuanceRequest) => {
-    const request = {
-      request_id: issuanceRequest.request_id,
-      signature: issuanceRequest.signature,
-      issuer_meta: {},
+  const sendIssuanceRequest = () => {
+    const issuanceRequest = {
+      request_id: signedMessage.request_id,
+      signature: signedMessage.signature,
+      issuer_meta: {
+        issuer_name: user.verification.organization_name,
+        issuer_email: user.verification.official_email,
+        issuer_website: user.verification.official_website,
+        issuer_pubkey: publicKey.toBase58(),
+      },
+      recipient_meta: issuance.recipients.map((recipient) => ({
+        recipient_name: recipient.recipient_name,
+        recipient_email: recipient.recipient_email,
+        recipient_pubkey: recipient.recipient_pubkey,
+        recipient_ecert_url: recipient.recipient_ecert_url,
+      })),
     };
+
+    makeIssuanceRequest(issuanceRequest)
+      .then((response) => {
+        dispatch(resetSelectedTemplate());
+        dispatch(resetIssuance());
+        actionController("toSendIssueRequest");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  const authorizeTransaction = () => {
-    getUnsignedMessage(publicKey.toBase58()).then((response) => {
-      try {
-        signMessage(new TextEncoder().encode(response.message)).then(
-          (signature) => {
-            const issuanceRequest = {
+  const createIssuanceRequest = () => {
+    getUnsignedMessage(publicKey.toBase58())
+      .then((response) => {
+        signMessage(new TextEncoder().encode(response.message))
+          .then((signature) => {
+            setSignedMessage({
               request_id: response.request_id,
               signature: bs58.encode(signature),
-            };
-
-            console.log("issuanceRequest", issuanceRequest);
-          }
-        );
-      } catch (error) {
-        console.log(`Error signing message: ${error}`);
-      }
-    });
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleTransferClick = () => {
-    setOpenModal(true);
-    // createTemplConf();
-    authorizeTransaction();
-    useDispatch(resetSelectedTemplate());
-    useDispatch(resetIssuance());
+    // setOpenModal(true);
+    createIssuanceRequest();
+    generateCertificate();
+    // createIssuanceRequest() was moved to the useEffect hook. This is because we need to wait for
+    // the certificates to be generated before we can make an issuance request.
   };
 
   const generateImage = () => {
@@ -193,29 +275,36 @@ const TemplateEditor = ({ actionController }) => {
   };
 
   const getFontStyles = () => {
-    getAllFonts().then((res) => {
-      const fonts = [];
+    getAllFonts()
+      .then((res) => {
+        const fonts = [];
 
-      res.fonts.forEach((font) => {
-        const label = new URL(font.font_url).pathname
-          .split("/")
-          .filter(Boolean)
-          .pop();
+        res.fonts.forEach((font) => {
+          const label = new URL(font.font_url).pathname
+            .split("/")
+            .filter(Boolean)
+            .pop();
 
-        const decodedLabel = label
-          .replace(/-/g, " ")
-          .replace(new RegExp(FONT_FILE_FORMATS.join("|"), "g"), "");
+          const decodedLabel = label
+            .replace(/-/g, " ")
+            .replace(new RegExp(FONT_FILE_FORMATS.join("|"), "g"), "");
 
-        fonts.push({
-          value: decodedLabel,
-          label: decodedLabel,
-          url: font.font_url,
-          id: font.font_id,
+          fonts.push({
+            value: decodedLabel,
+            label: decodedLabel,
+            url: font.font_url,
+            id: font.font_id,
+          });
         });
-      });
 
-      setFontStyles(fonts);
-    });
+        setFontStyles(fonts);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const updateTemplateFonts = () => {
@@ -259,23 +348,28 @@ const TemplateEditor = ({ actionController }) => {
   };
 
   React.useEffect(() => {
-    if (!hasTemplateSize) {
-      getTemplateSize();
-      setHasTemplateSize(true);
+    if (hasCreatedCerts && signedMessage !== null) {
+      sendIssuanceRequest();
+      return;
+    } else {
+      if (!hasTemplateSize) {
+        getTemplateSize();
+        setHasTemplateSize(true);
+      }
+
+      if (!hasFontStyles) {
+        getFontStyles();
+        setHasFontStyles(true);
+      }
+
+      updateTemplateFonts();
+
+      setTemplateUrl(
+        template.selectedTemplate.payload
+          ? template.selectedTemplate.payload.templateUrl
+          : template.selectedTemplate.templateUrl
+      );
     }
-
-    if (!hasFontStyles) {
-      getFontStyles();
-      setHasFontStyles(true);
-    }
-
-    updateTemplateFonts();
-
-    setTemplateUrl(
-      template.selectedTemplate.payload
-        ? template.selectedTemplate.payload.templateUrl
-        : template.selectedTemplate.templateUrl
-    );
   }, [
     nameFontSize,
     nameFontStyle,
@@ -283,6 +377,7 @@ const TemplateEditor = ({ actionController }) => {
     dateFontStyle,
     namePosition,
     datePosition,
+    hasCreatedCerts,
   ]);
 
   // TODO: Attach a tip on a draggable component, e.g, "Drag to move". Remove it on drag.

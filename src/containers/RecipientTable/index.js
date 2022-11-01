@@ -86,8 +86,9 @@ const RecipientTable = ({ actionController }) => {
         recipient_email: recipient[2],
       };
       dispatch(addRecipient(recipientObj));
-      dispatch(setIssuanceDate(date));
     });
+
+    dispatch(setIssuanceDate(date));
 
     actionController("toSelectTemplate");
   };

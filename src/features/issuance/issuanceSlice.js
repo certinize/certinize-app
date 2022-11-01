@@ -18,6 +18,9 @@ export const issuanceSlice = createSlice({
     setIssuanceDate: (state, action) => {
       state.issuanceDate = action.payload;
     },
+    overwriteRecipients: (state, action) => {
+      state.recipients = action.payload;
+    },
     resetIssuance: (state) => {
       state.recipients = [];
       state.issuanceDate = "";
@@ -25,7 +28,11 @@ export const issuanceSlice = createSlice({
   },
 });
 
-export const { addRecipient, setIssuanceDate, resetIssuance } =
-  issuanceSlice.actions;
+export const {
+  addRecipient,
+  setIssuanceDate,
+  resetIssuance,
+  overwriteRecipients,
+} = issuanceSlice.actions;
 
 export default issuanceSlice.reducer;
