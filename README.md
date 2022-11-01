@@ -9,3 +9,4 @@ This is the official Certinize frontend repository including the web components,
 - Hypertext Markup Language (HTML)
 - Cascading Stylesheet (CSS)
 - Bootstrap CSS
+-
