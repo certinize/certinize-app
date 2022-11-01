@@ -1,6 +1,5 @@
 import App from "./app/App";
 import store from "./app/store";
-import WalletContextProvider from "./components/WalletContextProvider";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import React from "react";
@@ -11,11 +10,9 @@ import { BrowserRouter } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <WalletContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </WalletContextProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
 
