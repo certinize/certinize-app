@@ -1,67 +1,114 @@
-.main {
-  margin-top: 3.75rem;
-  display: flex;
-  gap: 30vh;
+*{
+    margin: 0;
+    padding: 0;
+    color: #1C3843;
 }
 
-.profile-page-avatar-container {
-  display: flex;
-  justify-content: center;
+header{
+    background-image: url("bg layout.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+header p{
+    font-size: 45px;
+    font-weight: 900;
+    padding: 20px;
+    font-style: italic;
+    text-transform: uppercase;
 }
 
-.user {
-  margin-left: 30vh;
-  display: block;
+.main{
+    margin-top: 60px;
+    display: flex;
+    gap: 30vh;
+    
 }
 
-.profile-page-avatar {
-  height: auto;
-  width: 12.5rem;
+.profile{
+    display: flex;
+    justify-content: center;
 }
 
-.profile-text {
-  margin-top: 1.875rem;
-  text-align: center;
-  line-height: 1.25rem;
-  color: #1c3843;
+.user{
+    margin-left: 30vh;
+    display: block;;
 }
 
-.profile-text :nth-child(1) {
-  font-weight: bold;
-  font-size: 1.875rem;
+.text-center {
+    text-align: center;
 }
 
-.profile-text :nth-child(2) {
-  font-style: italic;
+input[type="submit"] {
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #38ADD9;
+    color: #ffff;
+    font-weight: bold;
+    border: 2px solid #38ADD9;
+    transition: .5s;
 }
 
-.details .text {
-  font-size: 1.0625rem;
-  font-weight: bold;
-  color: #a5a5a5;
+input[type="submit"]:hover{
+    border-radius: 12px;
+    width: 100%;
+    background-color: transparent;
+    color: #38ADD9;
+    font-weight: bold;
+    border: 2px solid #38ADD9;
+
 }
 
-.profile-page-form {
-  width: 100%;
-  padding: 1.25rem 2.5rem;
-  border-radius: 1.25rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0rem 0.1875rem 0.5rem;
+img{
+    height: auto;
+    width: 200px;
 }
 
-.profile-page-form label {
-  width: 100%;
-  display: flex;
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-top: 1.25rem;
+.profile-text{
+    margin-top: 30px;
+    text-align: center;
+    line-height: 20px;
+    color: #1C3843;
+}
+.profile-text :nth-child(1){
+    font-weight: bold;
+    font-size: 30px;
 }
 
-.profile-page-form p {
-  padding: 0.625rem;
-  text-overflow: ellipsis;
+.profile-text :nth-child(2){
+    font-style: italic;
 }
 
-.profile-page-form p:hover {
-  border-radius: 0.75rem;
-  background-color: #f0f0f0;
+.details .text{
+    font-size: 17px;
+    font-weight: bold;
+    color: #A5A5A5;
+}
+
+form{
+    width: 100%;
+    padding: 20px 40px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+form label{
+    width: 100%;
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+form p{
+    padding: 10px;
+    text-overflow: ellipsis;
+}
+
+form p:hover{
+    border-radius: 12px;
+    background-color: #F0F0F0;
 }

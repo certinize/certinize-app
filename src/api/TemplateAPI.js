@@ -1,11 +1,11 @@
 import { post, get } from ".";
 
-const TEMPLATES = "templates";
+const ISSUANCES = "issuances";
 
-export async function createTemplate(images) {
-  return await post(images, TEMPLATES);
+export async function createTemplate(template) {
+  return await post({ template }, ISSUANCES);
 }
 
 export async function getTemplates() {
-  return await get(TEMPLATES);
+  return await get(ISSUANCES);
 }

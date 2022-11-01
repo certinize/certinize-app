@@ -2,7 +2,7 @@ import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import ToolCategory from "../../components/ToolCategory/ToolCategory";
 import "./index.css";
-import { toSvg } from "html-to-image";
+import { toPng } from "html-to-image";
 import { PropTypes } from "prop-types";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -34,6 +34,8 @@ const FONT_SIZES = [
   { value: "70", label: "70" },
 ];
 
+const BUTTON_STYLE = { width: "10%", height: "3rem", fontSize: "1.5rem" };
+
 const TemplateEditor = ({ actionController }) => {
   const [openModal, setOpenModal] = React.useState(false);
   const recipientName = React.useRef();
@@ -48,33 +50,33 @@ const TemplateEditor = ({ actionController }) => {
   };
 
   const generateImage = () => {
-    document.getElementById("toolMenu").remove();
-
-    const certificateBox = document.getElementById("certificateBox");
-
-    toSvg(certificateBox, {
+    toPng(document.getElementById("certificateBox"), {
       quality: 1,
-    }).then((dataUrl) => {
-      const image = new Image();
+    }).then(function (dataUrl) {
+      let image = new Image();
       image.src = dataUrl;
       image.alt = "Certificate Preview";
 
-      createRoot(document.getElementById("btnContainer")).render(
-        <>
-          <Button onClick={() => setOpenModal(true)} text="Transfer">
-            Transfer
-          </Button>
-          <Button styleType="danger" text="Cancel">
-            Cancel
-          </Button>
-        </>
+      document.getElementsByClassName("tool-menu")[0].remove();
+
+      let btnContainer = createRoot(
+        document.getElementsByClassName("btn-container")[0]
       );
 
-      certificateBox.replaceWith(image);
+      btnContainer.render(
+        <div className="btn-container">
+          <Button
+            text="Transfer"
+            style={{ marginLeft: "1em", marginRight: "1em", ...BUTTON_STYLE }}
+            onClick={() => setOpenModal(true)}
+          />
+          <Button text="Cancel" style={BUTTON_STYLE} styleType="danger" />
+        </div>
+      );
+
+      document.getElementById("certificateBox").replaceWith(image);
     });
   };
-
-  // TODO: Attach a tip on a draggable component, e.g, "Drag to move". Remove it on drag.
 
   return (
     <>
@@ -89,15 +91,11 @@ const TemplateEditor = ({ actionController }) => {
           </div>
           <div className="modal-btn-group">
             <div className="btn-group-col">
-              <Button styleType="danger" text="Cancel">
-                Cancel
-              </Button>
+              <Button text="Cancel" styleType="danger" />
               <Button
-                onClick={() => actionController("toSendIssueRequest")}
                 text="Transfer"
-              >
-                Transfer
-              </Button>
+                onClick={() => actionController("toSendIssueRequest")}
+              />
             </div>
           </div>
         </Modal>
@@ -122,15 +120,11 @@ const TemplateEditor = ({ actionController }) => {
               </Draggable>
             </div>
           </div>
-          <div className="edit-template-action-area">
-            <div className="edit-template-btn-container" id="btnContainer">
-              <Button onClick={generateImage} text="Next">
-                Next
-              </Button>
-            </div>
+          <div className="btn-container">
+            <Button text="Next" style={BUTTON_STYLE} onClick={generateImage} />
           </div>
         </div>
-        <div className="tool-menu" id="toolMenu">
+        <div className="tool-menu">
           <ToolCategory
             label={"Recipient Name"}
             first={FONT_STYLES}

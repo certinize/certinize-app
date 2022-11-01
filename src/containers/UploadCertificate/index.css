@@ -1,13 +1,13 @@
+.icon {
+  font-size: 2.1875rem;
+}
+
 .upload-container {
   margin: 0;
-  width: 50rem;
+  width: 70%;
   background-color: #5c7a87;
   padding: 2.5rem 2.5rem;
   display: block;
-}
-
-.upload-cert-input-file {
-  display: none;
 }
 
 .upload-container:hover {
@@ -24,7 +24,11 @@
   justify-content: center;
 }
 
-.upload-cert-instruction-btn {
+input[type="file"] {
+  display: none;
+}
+
+.intruction-btn {
   display: flex;
   justify-content: center;
   gap: 0.9375rem;
@@ -37,34 +41,15 @@
   padding: 0.625rem 1.25rem;
   border-radius: 1.875rem;
   transition: 0.4s;
-  width: 25rem;
+  width: 60%;
   font-size: 1.25rem;
 }
 
-.upload-cert-button-set {
-  width: 25rem;
+.button-set {
   display: flex;
-  flex-direction: row;
-  align-self: flex-end;
-  gap: 0.9375rem;
-}
-
-.upload-cert-upload-btn {
-  width: 60%;
-  align-self: flex-end;
-}
-
-.upload-cert-upload-btn-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  gap: 0.625rem;
-}
-
-.upload-cert-cancel-btn {
-  width: 40%;
+  float: right;
+  margin: 1.875rem;
+  gap: 1.875rem;
 }
 
 .header {
@@ -98,21 +83,23 @@
 }
 
 .delete {
-  border: solid transparent;
-  color: #ffff;
+  border: none;
   background-color: #b70b0b;
   border-radius: 0.3125rem;
   padding: 0.625rem 0.9375rem;
-  transition: all 0.2s;
+  transition: 0.2s;
+  color: #ffff;
   font-size: 1.4375rem;
   text-align: end;
 }
 
 .delete:hover {
-  border: solid #b70b0b;
-  color: #b70b0b;
+  padding: 0.625rem 0.9375rem;
+  border-radius: 0.3125rem;
   transition: 0.2s;
-  background-color: #fff;
+  background-color: transparent;
+  border: solid 0.125rem #b70b0b;
+  color: #b70b0b;
 }
 
 .button {
@@ -123,8 +110,25 @@
   width: 70%;
 }
 
-.upload-cert-content {
-  display: flex;
-  flex-direction: column;
-  margin: 3.75rem 3.75rem 0 3.75rem;
+.ctn {
+  background-color: #1a799d;
+  top: 0;
+}
+
+.cancel {
+  color: rgb(0, 0, 0);
+  border: solid 0.0625rem black;
+  background-color: #ffff;
+}
+
+.ctn:hover {
+  transform: scale(1.3);
+  transition: 0.3s;
+}
+
+.cancel:hover {
+  transform: scale(1.3);
+  transition: 0.3s;
+  background-color: #b70b0b;
+  color: #ccc;
 }

@@ -17,6 +17,7 @@ const RecipientTable = ({ actionController }) => {
 
   const createTableRows = () => {
     return recipientList.map((recipient, index) => {
+      console.log(recipient);
       return (
         <tr key={index}>
           <td>{index}</td>
@@ -25,13 +26,11 @@ const RecipientTable = ({ actionController }) => {
           <td>{recipient[2]}</td>
           <td>
             <Button
+              text="Delete"
               styleType="danger"
               onClick={() => deleteRecipient(index)}
               style={{ height: "2.5rem", width: "6.25rem" }}
-              text="Delete"
-            >
-              Delete
-            </Button>
+            />
           </td>
         </tr>
       );
@@ -79,10 +78,8 @@ const RecipientTable = ({ actionController }) => {
           </div>
           <div className="modal-btn-group">
             <div className="btn-group-col">
-              <Button styleType="danger" text="Cancel">
-                Cancel
-              </Button>
-              <Button text="Transfer">Transfer</Button>
+              <Button text="Cancel" styleType="danger" />
+              <Button text="Transfer" />
             </div>
           </div>
         </Modal>
@@ -134,12 +131,10 @@ const RecipientTable = ({ actionController }) => {
               />
             </div>
             <Button
+              text="Add"
               type="submit"
               style={{ margin: 0, width: "6.25rem", height: "3.125rem" }}
-              text="Add"
-            >
-              Add
-            </Button>
+            />
           </form>
 
           <div className="user-table">
@@ -164,16 +159,12 @@ const RecipientTable = ({ actionController }) => {
               <tbody>{createTableRows()}</tbody>
             </table>
           </div>
-          <div className="recipient-table-button-set">
+          <div className="button-set">
             <Button
-              onClick={() => actionController("toSelectTemplate")}
               text="Continue"
-            >
-              Continue
-            </Button>
-            <Button styleType="danger" text="Cancel">
-              Cancel
-            </Button>
+              onClick={() => actionController("toSelectTemplate")}
+            />
+            <Button text="Cancel" styleType="danger" />
           </div>
         </div>
       </div>
