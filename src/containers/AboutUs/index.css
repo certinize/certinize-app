@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+.main{
+  display: block;
+}
+
 .background {
   background-image: url("bg layout.svg");
   background-repeat: no-repeat;
@@ -11,7 +15,6 @@
 }
 
 .flex {
-  padding-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -112,4 +115,8 @@
 .our_team .team_member:hover {
   margin-top: -1.75rem;
   cursor: pointer;
+}
+
+.aboutus-copyright{
+  text-align: center;
 }

@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#message{
+    display: none;
+}
+
+.verification-container{
+    display: flex;
+    justify-content: center;
+
+}
+
+.input-form-field{
+    display: flex;    
+    flex-direction: column;
+    width: 40%;
+    margin-top: 20vh;
+    padding: 7vh;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    color: var(--font-color);
+    border-radius: 15px;
+}
+
+.verification-input-header{
+    font-size: 1.4rem;
+    font-weight: bold;
+    
+}
+
+.verification-fieldset{
+    display: flex;
+    flex-direction: column;
+}
+
+.verification-label{
+    font-style: italic;
+}
+
+.verification-input{
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* --primary root is found at main index.css */
+.verification-button{
+    margin-top: 20px;
+    width: 50%;
+    border-radius: 10px;
+    border: solid 2px var(--primary); 
+    background-color: var(--primary);
+    color: var(--light);
+    padding: 10px
+}
+
+
+
+.verification-button:hover{
+    background-color: transparent;
+    border: solid 2px var(--primary);
+    transition: 0.3s;
+    color: var(--primary);
+}
+
+@media only screen and (max-width: 800px) {
+    .input-form-field{
+        width: 80%;
+        display: block;
+    }
+    .verification-label, .verification-input-header {
+      text-align: center;
+    }
+    .verification-button{
+        width: 100%;
+    }
+
+  }
+
+
+@media only screen and (max-width: 600px) {
+    .input-form-field{
+        width: 100%;
+        display: block;
+    }
+    .verification-label, .verification-input-header {
+      text-align: center;
+    }
+    .verification-button{
+        width: 100%;
+    }
+
+  }
+

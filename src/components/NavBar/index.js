@@ -19,27 +19,27 @@ const NavBar = () => {
 
   return (
     <div>
-      <nav>
+      <nav className="navbar">
         <input id="nav-toggle" type="checkbox" />
-        <div className="logo">
-          <img src="./img/certinize-logo.png" alt="" />
+        <div className="navbar-logo">
+          <img  src="./img/certinize-logo.png" alt="" />
           Certinize
         </div>
-        <ul className="links">
+        <ul className="navbar-link">
           <li>
             <Link to="/transfer" onClick={handleOnclick}>
-              <BiTransfer className="icon" /> Transfer
+              <BiTransfer className="navbar-icon" /> Transfer
             </Link>
           </li>
           <li>
             <Link to="/certificates" onClick={handleOnclick}>
-              <FaCertificate className="icon" />
+              <FaCertificate className="navbar-icon" />
               Certificates
             </Link>
           </li>
           <li>
             <Link to="/profile" onClick={handleOnclick}>
-              <RiTeamFill className="icon" />
+              <RiTeamFill className="navbar-icon" />
               Profile
             </Link>
           </li>
@@ -54,7 +54,6 @@ const NavBar = () => {
           <div className="line"></div>
         </label>
       </nav>
-      <section className="divider" />
     </div>
   );
 };

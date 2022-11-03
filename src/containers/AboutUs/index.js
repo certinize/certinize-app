@@ -6,13 +6,14 @@ import React from "react";
 const AboutUs = () => {
   return (
     <>
-      <div className="main">
-        <div className="background">
-          <div className="flex">
-            <img src="./img/certinize-logo.png" alt="" className="cert-logo" />
-          </div>
-          <p className="certinize-title">Certinize</p>
+
+      <div className="background">
+        <div className="flex">
+          <img src="./img/certinize-logo.png" alt="" className="cert-logo" />
         </div>
+        <p className="certinize-title">Certinize</p>
+      </div>
+      <div className="main">
         <div>
           <p className="text-title">
             Securing your e-Certificates on a new level{" "}
@@ -56,8 +57,8 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <footer>
-        <p>All Rights Reserved 2022</p>
+      <footer className="aboutus-footer">
+        <p className="aboutus-copyright">All Rights Reserved 2022</p>
       </footer>
     </>
   );
