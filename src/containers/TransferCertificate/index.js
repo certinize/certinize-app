@@ -123,7 +123,6 @@ const TransferCertificate = () => {
 
   return (
     <div>
-      <NavBar />
       <Header title={headerTitle} />
       <div className="content-body">{viewController()}</div>
     </div>

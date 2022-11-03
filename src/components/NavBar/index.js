@@ -7,7 +7,7 @@ import { BiTransfer } from "react-icons/bi";
 import { FaCertificate } from "react-icons/fa";
 import { RiTeamFill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -27,12 +27,12 @@ const NavBar = () => {
         </div>
         <ul className="navbar-link">
           <li>
-            <Link to="/transfer" onClick={handleOnclick}>
+            <Link to="/issuance" onClick={handleOnclick}>
               <BiTransfer className="navbar-icon" /> Transfer
             </Link>
           </li>
           <li>
-            <Link to="/certificates" onClick={handleOnclick}>
+            <Link to="/certificate" onClick={handleOnclick}>
               <FaCertificate className="navbar-icon" />
               Certificates
             </Link>
@@ -54,6 +54,7 @@ const NavBar = () => {
           <div className="line"></div>
         </label>
       </nav>
+      <Outlet />
     </div>
   );
 };

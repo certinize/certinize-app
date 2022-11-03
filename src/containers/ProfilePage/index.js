@@ -1,3 +1,4 @@
+import Button from "../../components/Button";
 import Header from "../../components/Header/Header";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,6 +8,20 @@ import { useSelector } from "react-redux";
 const ProfilePage = () => {
   const { verification } = useSelector((state) => state.user);
   const { pubkey } = useSelector((state) => state.user);
+
+  const getVerified = () => {
+    window.location.href = "/get-verified";
+  };
+
+  const showGetVerifiedBtn = () => {
+    return (
+      <div className="profile-get-verified-btn">
+        <Button text="Get Verified" onClick={getVerified}>
+          <div className="profile-get-verified-btn-txt"> Get Verified</div>
+        </Button>
+      </div>
+    );
+  };
 
   React.useEffect(() => {
     document.title = "Profile";
@@ -31,7 +46,7 @@ const ProfilePage = () => {
             <p>
               {verification?.verified_on
                 ? `Verified since ${verification.verified_on}`
-                : "Unverified"}
+                : showGetVerifiedBtn()}
             </p>
           </div>
         </div>

@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import { getTemplates } from "../../api/TemplateAPI";
 import Button from "../../components/Button";
 import Header from "../../components/Header/Header";
-import NavBar from "../../components/NavBar";
 import Thumbnail from "../../components/Thumbnail";
 import { setTemplates } from "../../features/template/templateSlice";
 import "./index.css";
@@ -18,7 +16,7 @@ const CollectionCertificate = () => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate("/upload-certificate");
+    navigate("/upload");
   };
 
   React.useEffect(() => {
@@ -31,7 +29,6 @@ const CollectionCertificate = () => {
 
   return (
     <>
-      <NavBar />
       <Header title="Certificate Templates" />
 
       <div className="col-cert-container">

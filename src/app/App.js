@@ -1,11 +1,13 @@
 import { authSolanaUser } from "../api/UserAPI";
+import NavBar from "../components/NavBar";
+import AboutUs from "../containers/AboutUs";
 import Auth from "../containers/Auth";
 import CollectionCertificate from "../containers/CollectionCertificate";
 import ProfilePage from "../containers/ProfilePage";
 import TransferCertificate from "../containers/TransferCertificate";
 import UploadCertificate from "../containers/UploadCertificate";
 import VerificationView from "../containers/VerifcationView";
-import AboutUs from "../containers/AboutUs";
+import VerificationForm from "../containers/VerificationForm";
 import {
   setUser,
   setPubkey,
@@ -32,17 +34,19 @@ function App() {
     }
 
     return (
-      <>
-        <Routes>
+      <Routes>
+        <Route path="/about" element={<AboutUs />} />
+
+        <Route path="/verification" element={<VerificationView />} />
+        <Route element={<NavBar />}>
           <Route path="/" element={<CollectionCertificate />} />
-          <Route path="/transfer" element={<TransferCertificate />} />
-          <Route path="/certificates" element={<CollectionCertificate />} />
+          <Route path="/issuance" element={<TransferCertificate />} />
+          <Route path="/certificate" element={<CollectionCertificate />} />
+          <Route path="/upload" element={<UploadCertificate />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/upload-certificate" element={<UploadCertificate />} />
-          <Route path="/verification" element={<VerificationView />} />
-          <Route path="/aboutus" element={<AboutUs />} />
-        </Routes>
-      </>
+          <Route path="/issuer-verification" element={<VerificationForm />} />
+        </Route>
+      </Routes>
     );
   }
 

@@ -1,7 +1,9 @@
 .main {
   margin-top: 3.75rem;
-  display: flex;
-  gap: 30vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "left right";
 }
 
 .profile-page-avatar-container {
@@ -10,8 +12,7 @@
 }
 
 .user {
-  margin-left: 30vh;
-  display: block;
+  /* margin-left: 30vh; */
 }
 
 .profile-page-avatar {
@@ -20,14 +21,6 @@
 }
 
 .profile-text {
-  margin-top: 1rem;
-  padding: 1rem;
-  text-align: center;
-  line-height: 1.25rem;
-  color: #1c3843;
-  max-width: 37.5rem;
-  white-space: wrap;
-  line-height: 1.2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,7 +44,7 @@
 }
 
 .profile-page-form {
-  width: 100%;
+  width: 90%;
   padding: 1.25rem 2.5rem;
   border-radius: 1.25rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0rem 0.1875rem 0.5rem;
@@ -73,4 +66,13 @@
 .profile-page-form p:hover {
   border-radius: 0.75rem;
   background-color: #f0f0f0;
+}
+
+.profile-get-verified-btn {
+  width: 12.5rem;
+  height: 2.5rem;
+}
+
+.profile-get-verified-btn-txt {
+  font-size: 1.125rem !important;
 }
