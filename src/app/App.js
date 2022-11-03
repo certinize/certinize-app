@@ -36,7 +36,6 @@ function App() {
     return (
       <Routes>
         <Route path="/about" element={<AboutUs />} />
-
         <Route path="/verification" element={<VerificationView />} />
         <Route element={<NavBar />}>
           <Route path="/" element={<CollectionCertificate />} />

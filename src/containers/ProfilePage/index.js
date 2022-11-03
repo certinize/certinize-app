@@ -1,5 +1,6 @@
 import Button from "../../components/Button";
 import Header from "../../components/Header/Header";
+import avatar from "./default_avatar.png";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
@@ -37,17 +38,15 @@ const ProfilePage = () => {
           <div className="profile-page-avatar-container">
             <img
               className="profile-page-avatar"
-              src={verification?.organization_logo}
+              src={verification?.organization_logo || avatar}
               alt="Organization Logo"
             />
           </div>
           <div className="profile-text">
             <p>{verification?.organization_name}</p>
-            <p>
-              {verification?.verified_on
-                ? `Verified since ${verification.verified_on}`
-                : showGetVerifiedBtn()}
-            </p>
+            {verification?.verified_on
+              ? `Verified since ${verification.verified_on}`
+              : showGetVerifiedBtn()}
           </div>
         </div>
         <div className="details">
