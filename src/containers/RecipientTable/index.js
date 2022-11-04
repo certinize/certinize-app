@@ -34,9 +34,9 @@ const RecipientTable = ({ actionController }) => {
               styleType="danger"
               onClick={() => deleteRecipient(index)}
               style={{ height: "2.5rem", width: "6.25rem" }}
-              text="Delete"
+              text="Remove"
             >
-              Delete
+              Remove
             </Button>
           </td>
         </tr>
@@ -231,11 +231,11 @@ const RecipientTable = ({ actionController }) => {
               </table>
             </div>
             <div className="recipient-table-button-set">
-              <Button onClick={handleContinue} text="Continue">
-                Continue
-              </Button>
               <Button styleType="danger" text="Cancel">
                 Cancel
+              </Button>
+              <Button onClick={handleContinue} text="Continue">
+                Continue
               </Button>
             </div>
           </div>

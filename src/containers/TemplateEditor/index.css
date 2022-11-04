@@ -70,16 +70,28 @@
 }
 
 .edit-template-btn-container {
-  width: 20%;
   display: flex;
-  gap: 0.9375rem;
+  justify-content: center;
+  gap: 0.625rem;
+  width: 16rem;
+  height: 4rem;
+}
+
+.edit-template-btn-content {
+  width: 8rem;
+  height: 4rem;
 }
 
 .edit-template-action-area {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  margin: 2.5rem;
+  margin: 2.5rem 0;
+}
+
+.edit-template-btn-next {
+  width: 8rem;
 }
 
 @media screen and (max-width: 600px) {

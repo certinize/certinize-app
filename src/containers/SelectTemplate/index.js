@@ -68,14 +68,14 @@ const SelectTemplate = ({ actionController }) => {
     <div className="select-template-container">
       <div className="select-template-button-set">
         <div className="select-template-button-set-content">
+          <Button styleType="danger" text="Cancel">
+            Cancel
+          </Button>
           <Button
             onClick={() => actionController("toEditTemplate")}
             text="Continue"
           >
             Continue
-          </Button>
-          <Button styleType="danger" text="Cancel">
-            Cancel
           </Button>
         </div>
       </div>
