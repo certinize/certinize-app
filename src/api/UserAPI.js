@@ -1,4 +1,4 @@
-import { getPath } from ".";
+import { getPath, post } from ".";
 
 const USERS = "users";
 
@@ -6,4 +6,8 @@ const authSolanaUser = async (pubkey) => {
   return await getPath(USERS, pubkey);
 };
 
-export { authSolanaUser };
+const verifyUser = async (data) => {
+  return await post(data, USERS);
+};
+
+export { authSolanaUser, verifyUser };

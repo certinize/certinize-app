@@ -5,13 +5,15 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const { verification } = useSelector((state) => state.user);
   const { pubkey } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const getVerified = () => {
-    window.location.href = "/get-verified";
+    navigate("/issuer-verification");
   };
 
   const showGetVerifiedBtn = () => {

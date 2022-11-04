@@ -33,3 +33,18 @@ export async function getPath(path, param) {
     console.log(`Error: ${error}`);
   }
 }
+
+export async function patch(requestBody, endpoint) {
+  try {
+    const response = await fetch(`${GATEWAY_URL}/${endpoint}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+    return await response.json();
+  } catch (error) {
+    console.log(`Error: ${error}`);
+  }
+}
