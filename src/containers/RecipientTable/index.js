@@ -1,7 +1,5 @@
 import Button from "../../components/Button";
-import Modal from "../../components/Modal";
 import { addRecipient } from "../../features/issuance/issuanceSlice";
-import { setIssuanceDate } from "../../features/issuance/issuanceSlice";
 import "./index.css";
 import { PublicKey } from "@solana/web3.js";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,9 +9,7 @@ import { useDispatch } from "react-redux";
 
 const RecipientTable = ({ actionController }) => {
   const dispatch = useDispatch();
-  const [openModal, setOpenModal] = useState(false);
   const [recipientList, setRecipientList] = useState([]);
-  const [date, setDate] = useState("");
 
   const deleteRecipient = (index) => {
     const newRecipientList = [...recipientList];
@@ -26,9 +22,9 @@ const RecipientTable = ({ actionController }) => {
       return (
         <tr className="recipient-table-tr" key={index}>
           <td>{index + 1}</td>
-          <td>{recipient[0]}</td>
-          <td>{recipient[1]}</td>
-          <td>{recipient[2]}</td>
+          <td className="recipient-table-txt-truncate">{recipient[0]}</td>
+          <td className="recipient-table-txt-truncate">{recipient[1]}</td>
+          <td className="recipient-table-txt-truncate">{recipient[2]}</td>
           <td>
             <Button
               styleType="danger"
@@ -67,14 +63,8 @@ const RecipientTable = ({ actionController }) => {
     e.target.reset();
   };
 
-  const handleEscape = (e) => {
-    if (e.key === "Escape") {
-      setOpenModal(false);
-    }
-  };
-
   const handleContinue = () => {
-    if (recipientList.length === 0 || date === "") {
+    if (recipientList.length === 0) {
       alert("Please fill in all the fields");
       return;
     }
@@ -88,61 +78,20 @@ const RecipientTable = ({ actionController }) => {
       dispatch(addRecipient(recipientObj));
     });
 
-    dispatch(setIssuanceDate(date));
-
-    actionController("toSelectTemplate");
+    actionController("toTemplateSelection");
   };
 
-  React.useEffect(() => {
-    document.addEventListener("keydown", handleEscape, false);
-
-    return () => {
-      document.removeEventListener("keydown", handleEscape, false);
-    };
-  }, []);
-
   return (
-    <div className="recipient-table-container">
-      <div className="certinize-modal" id="modal">
-        <Modal
-          open={openModal}
-          title="Issue Certificate"
-          onClose={() => setOpenModal(false)}
-        >
-          <div className="certinize-modal-body">
-            Distribute certificate to five (5) recipients?
-          </div>
-          <div className="modal-btn-group">
-            <div className="btn-group-col">
-              <Button styleType="danger" text="Cancel">
-                Cancel
-              </Button>
-              <Button text="Transfer">Transfer</Button>
-            </div>
-          </div>
-        </Modal>
+    <div className="container d-flex flex-column my-4">
+      <div className="recipient-table-button-set">
+        <Button styleType="danger" text="Cancel">
+          Cancel
+        </Button>
+        <Button onClick={handleContinue} text="Continue">
+          Continue
+        </Button>
       </div>
-      <div className="d-flex align-items-center w-100 recipient-table-input-fields mt-5">
-        <div className="form-group w-25">
-          <label
-            className="form-label recipient-table-label"
-            htmlFor="issuanceDate"
-          >
-            Issuance Date
-          </label>
-          <input
-            type="date"
-            className="form-control recipient-table-input"
-            name="issuanceDate"
-            id="issuanceDate"
-            aria-describedby="issuance-date"
-            placeholder="Enter certificate issuance date"
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}
-            required
-          />
-        </div>
+      <div className="d-flex align-items-center w-100 recipient-table-input-fields">
         <div className="d-flex justify-content-center align-items-start mt-5 w-100">
           <div className="w-75">
             <form
@@ -202,7 +151,7 @@ const RecipientTable = ({ actionController }) => {
                 />
               </div>
               <div className="recipient-table-add-btn">
-                <Button type="submit" text="Add">
+                <Button type="submit" text="Add Recipient">
                   Add
                 </Button>
               </div>
@@ -229,14 +178,6 @@ const RecipientTable = ({ actionController }) => {
                 </thead>
                 <tbody>{createTableRows()}</tbody>
               </table>
-            </div>
-            <div className="recipient-table-button-set">
-              <Button styleType="danger" text="Cancel">
-                Cancel
-              </Button>
-              <Button onClick={handleContinue} text="Continue">
-                Continue
-              </Button>
             </div>
           </div>
         </div>
