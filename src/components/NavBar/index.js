@@ -24,8 +24,9 @@ const NavBar = () => {
         <div className="navbar-logo">
           <img  src="./img/certinize-logo.png" alt="" />
           Certinize
-        </div>
+        </div> 
         <ul className="navbar-link">
+
           <li>
             <Link to="/issuance" onClick={handleOnclick}>
               <BiTransfer className="navbar-icon" /> Transfer

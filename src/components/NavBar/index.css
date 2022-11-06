@@ -11,9 +11,6 @@ body {
   
 }
 
-.divider{
-	margin-top: 11vh;
-}
 
  .navbar {
 	position: fixed;
@@ -25,9 +22,8 @@ body {
 }
 .navbar-logo {
 	float: left;
-	width: 40%;
 	display: flex;
-  	padding: 20px;
+	padding-left: 25vh;
 	align-items: center;
 	font-size: 24px;
 	color: #fff;
@@ -40,8 +36,7 @@ body {
 }
  .navbar-link {
 	padding: 0;
-	margin: 0;
-	width: 60%;
+	margin: 0 15vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
