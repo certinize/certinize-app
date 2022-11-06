@@ -13,7 +13,6 @@
   background-color: #1c3843;
 }
 
-<<<<<<< HEAD
 
  .navbar {
 	position: fixed;
@@ -70,11 +69,6 @@
 }
 
  .user-profile{
-=======
-.navbar-logo {
-  float: left;
-  width: 40%;
->>>>>>> refs/remotes/origin/main
   display: flex;
   padding: 1.25rem;
   align-items: center;
