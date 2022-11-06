@@ -10,7 +10,7 @@ import {
   AiOutlineUpload,
 } from "react-icons/ai";
 
-const UploadCertificate = () => {
+const TemplateUpload = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [toUpload, setToUpload] = useState([]);
 
@@ -83,9 +83,8 @@ const UploadCertificate = () => {
 
   React.useEffect(() => {
     if (toUpload.length > 0 && toUpload.length === selectedFiles.length) {
-      console.log({ templates: toUpload });
-      createTemplate({ image: toUpload }).then((res) => {
-        console.log(res);
+      createTemplate({ templates: toUpload }).then((res) => {
+        console.log("Response", res);
       });
       setSelectedFiles([]);
     }
@@ -162,4 +161,4 @@ const UploadCertificate = () => {
   );
 };
 
-export default UploadCertificate;
+export default TemplateUpload;
