@@ -33,9 +33,10 @@
 
 .recipient-table-button-set {
   display: flex;
-  float: right;
-  margin: 1.875rem;
-  gap: 1.875rem;
+  align-self: flex-end;
+  gap: 0.625rem;
+  width: 16rem;
+  height: 4rem;
 }
 
 .content-form {
@@ -51,37 +52,6 @@
   flex-grow: 1;
 }
 
-.certinize-modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.certinize-modal-body {
-  width: 100%;
-
-  font-size: 1.5rem;
-  font-weight: bold;
-  font-family: "Helvetica";
-  color: #1a799d;
-}
-
-.modal-btn-group {
-  border-top: var(--bs-modal-header-border-width) solid
-    var(--bs-modal-header-border-color);
-  padding-top: 1rem;
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-}
-
-.btn-group-col {
-  gap: 0.625rem;
-  width: 50%;
-  display: flex;
-  flex-direction: row;
-}
-
 .number-col {
   width: 10%;
 }
@@ -95,4 +65,11 @@
   margin-left: 0.625rem;
   width: 6.25rem;
   height: 3.125rem;
+}
+
+.recipient-table-txt-truncate {
+  max-width: 0.625rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

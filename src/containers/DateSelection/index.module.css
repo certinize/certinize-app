@@ -1,0 +1,21 @@
+.selectDateContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.selectDateContent {
+  display: flex;
+  align-items: center;
+  height: 400px;
+  width: 400px;
+}
+
+.selectDateBtnContainer {
+  display: flex;
+  align-self: flex-end;
+  gap: 0.625rem;
+  width: 16rem;
+  height: 4rem;
+}

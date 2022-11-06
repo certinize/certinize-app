@@ -5,7 +5,8 @@
 }
 
 .verification-form-content {
-  width: 50%;
+  background-color: rgba(128, 128, 128, 0.15);
+  width: 50rem;
   border-radius: 0.75rem;
   padding: 2.5rem 1.875rem;
   color: #0d4b65;
@@ -70,4 +71,16 @@
   color: #38add9;
   font-weight: bold;
   border: 0.125rem solid #38add9;
+}
+
+.verification-form-btn-group-col {
+  width: 25%;
+}
+
+.verification-form-modal-body {
+  text-align: center;
+  font-size: 1.3rem;
+  width: 100%;
+  font-weight: bold;
+  color: #1a799d;
 }

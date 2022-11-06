@@ -10,7 +10,8 @@ import { AiOutlineUpload } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const CollectionCertificate = () => {
+const CertificateCollection = () => {
+  const [fetchedTempaltes, setFetchedTemplates] = React.useState(false);
   const templates = useSelector((state) => state.template.templates);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,9 +21,11 @@ const CollectionCertificate = () => {
   };
 
   React.useEffect(() => {
-    if (templates.length === 0) {
+    if (!fetchedTempaltes) {
       getTemplates().then((res) => {
+        console.log(res);
         dispatch(setTemplates(res.templates));
+        setFetchedTemplates(true);
       });
     }
   });
@@ -51,4 +54,4 @@ const CollectionCertificate = () => {
   );
 };
 
-export default CollectionCertificate;
+export default CertificateCollection;

@@ -11,7 +11,7 @@ import React from "react";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 
-const SelectTemplate = ({ actionController }) => {
+const TemplateSelection = ({ actionController }) => {
   const templates = useSelector((state) => state.template.templates);
   const selectedTemplate = useSelector(
     (state) => state.template.selectedTemplate
@@ -65,17 +65,17 @@ const SelectTemplate = ({ actionController }) => {
   };
 
   return (
-    <div className="select-template-container">
+    <div className="container d-flex flex-column my-4">
       <div className="select-template-button-set">
         <div className="select-template-button-set-content">
+          <Button styleType="danger" text="Cancel">
+            Cancel
+          </Button>
           <Button
-            onClick={() => actionController("toEditTemplate")}
+            onClick={() => actionController("toTemplateEditor")}
             text="Continue"
           >
             Continue
-          </Button>
-          <Button styleType="danger" text="Cancel">
-            Cancel
           </Button>
         </div>
       </div>
@@ -86,8 +86,8 @@ const SelectTemplate = ({ actionController }) => {
   );
 };
 
-SelectTemplate.propTypes = {
+TemplateSelection.propTypes = {
   actionController: PropTypes.func,
 };
 
-export default SelectTemplate;
+export default TemplateSelection;

@@ -3,10 +3,12 @@ import templateReducer from "../features/template/templateSlice";
 import userReducer from "../features/user/userSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     user: userReducer,
     issuance: issuanceReducer,
     template: templateReducer,
   },
 });
+
+export default store;

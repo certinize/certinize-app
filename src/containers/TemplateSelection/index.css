@@ -3,15 +3,13 @@
   width: 20%;
   justify-content: flex-end;
   align-self: flex-end;
-  margin-top: 3.75rem;
-  margin-right: 3.75rem;
-  margin-left: 3.75rem;
 }
 
 .select-template-button-set-content {
   display: flex;
-  width: 100%;
-  gap: 0.9375rem;
+  gap: 0.625rem;
+  width: 16rem;
+  height: 4rem;
 }
 
 .select-template-container {

@@ -439,9 +439,11 @@ const TemplateEditor = ({ actionController }) => {
           </div>
           <div className="edit-template-action-area">
             <div className="edit-template-btn-container" id="btnContainer">
-              <Button onClick={generateImage} text="Next">
-                Next
-              </Button>
+              <div className="edit-template-btn-content">
+                <Button onClick={generateImage} text="Next">
+                  Next
+                </Button>
+              </div>
             </div>
           </div>
         </div>
