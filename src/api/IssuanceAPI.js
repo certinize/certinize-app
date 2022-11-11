@@ -3,7 +3,7 @@ import { post, getPath } from ".";
 const ISSUANCES = "issuances";
 
 const makeIssuanceRequest = async (issuanceRequest) => {
-  return await post(issuanceRequest, ISSUANCES);
+  return await post(ISSUANCES, issuanceRequest);
 };
 
 const getUnsignedMessage = async (pubkey) => {

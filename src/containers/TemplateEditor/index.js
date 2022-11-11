@@ -21,8 +21,9 @@ import { createRoot } from "react-dom/client";
 import Draggable from "react-draggable";
 import { useSelector, useDispatch } from "react-redux";
 
+const DEFAULT_ISSUER_EMAIL = "certinize@gmail.com";
+const DEFAULT_ISSUER_WEBSITE = "https://certinize.com";
 const FONT_FILE_FORMATS = [".ttf"];
-
 const FONT_SIZES = [
   { value: "12", label: "12" },
   { value: "14", label: "14" },
@@ -41,7 +42,6 @@ const FONT_SIZES = [
   { value: "40", label: "40" },
   { value: "64", label: "64" },
 ];
-
 const FONT_STYLE_DEFAULT = { value: "arial", label: "arial" };
 const FONT_SIZE_DEFAULT = FONT_SIZES[14];
 
@@ -77,8 +77,7 @@ const TemplateEditor = ({ actionController }) => {
   const [hasTemplateSize, setHasTemplateSize] = React.useState(false);
 
   // Transaction-related states
-  const [recipients, setRecipients] = React.useState([]);
-  const [hasCreatedCerts, setHasCreatedCerts] = React.useState(false);
+  const [sentIssueRequest, setSentIssueRequest] = React.useState(false);
   const [signedMessage, setSignedMessage] = React.useState(null);
 
   const recipientName = React.useRef();
@@ -113,8 +112,7 @@ const TemplateEditor = ({ actionController }) => {
               });
             });
 
-            dispatch(overwriteRecipients(recipients));
-            setHasCreatedCerts(true);
+            sendIssuanceRequest(recipients);
           }
         })
         .catch((error) => {
@@ -176,17 +174,18 @@ const TemplateEditor = ({ actionController }) => {
       });
   };
 
-  const sendIssuanceRequest = () => {
+  const sendIssuanceRequest = (recipients) => {
     const issuanceRequest = {
       request_id: signedMessage.request_id,
       signature: signedMessage.signature,
       issuer_meta: {
-        issuer_name: user.verification.organization_name,
-        issuer_email: user.verification.official_email,
-        issuer_website: user.verification.official_website,
+        issuer_name: user.verification.organization_name || user.pubkey,
+        issuer_email: user.verification.official_email || DEFAULT_ISSUER_EMAIL,
+        issuer_website:
+          user.verification.official_website || DEFAULT_ISSUER_WEBSITE,
         issuer_pubkey: publicKey.toBase58(),
       },
-      recipient_meta: issuance.recipients.map((recipient) => ({
+      recipient_meta: recipients.map((recipient) => ({
         recipient_name: recipient.recipient_name,
         recipient_email: recipient.recipient_email,
         recipient_pubkey: recipient.recipient_pubkey,
@@ -195,7 +194,7 @@ const TemplateEditor = ({ actionController }) => {
     };
 
     makeIssuanceRequest(issuanceRequest)
-      .then((response) => {
+      .then((_response) => {
         dispatch(resetSelectedTemplate());
         dispatch(resetIssuance());
         actionController("toSendIssueRequest");
@@ -227,9 +226,6 @@ const TemplateEditor = ({ actionController }) => {
   const handleTransferClick = () => {
     // setOpenModal(true);
     createIssuanceRequest();
-    generateCertificate();
-    // createIssuanceRequest() was moved to the useEffect hook. This is because we need to wait for
-    // the certificates to be generated before we can make an issuance request.
   };
 
   const generateImage = () => {
@@ -348,28 +344,28 @@ const TemplateEditor = ({ actionController }) => {
   };
 
   React.useEffect(() => {
-    if (hasCreatedCerts && signedMessage !== null) {
-      sendIssuanceRequest();
-      return;
-    } else {
-      if (!hasTemplateSize) {
-        getTemplateSize();
-        setHasTemplateSize(true);
-      }
-
-      if (!hasFontStyles) {
-        getFontStyles();
-        setHasFontStyles(true);
-      }
-
-      updateTemplateFonts();
-
-      setTemplateUrl(
-        template.selectedTemplate.payload
-          ? template.selectedTemplate.payload.templateUrl
-          : template.selectedTemplate.templateUrl
-      );
+    if (signedMessage !== null && !sentIssueRequest) {
+      setSentIssueRequest(true);
+      generateCertificate();
     }
+
+    if (!hasTemplateSize) {
+      getTemplateSize();
+      setHasTemplateSize(true);
+    }
+
+    if (!hasFontStyles) {
+      getFontStyles();
+      setHasFontStyles(true);
+    }
+
+    updateTemplateFonts();
+
+    setTemplateUrl(
+      template.selectedTemplate.payload
+        ? template.selectedTemplate.payload.templateUrl
+        : template.selectedTemplate.templateUrl
+    );
   }, [
     nameFontSize,
     nameFontStyle,
@@ -377,7 +373,7 @@ const TemplateEditor = ({ actionController }) => {
     dateFontStyle,
     namePosition,
     datePosition,
-    hasCreatedCerts,
+    signedMessage,
   ]);
 
   // TODO: Attach a tip on a draggable component, e.g, "Drag to move". Remove it on drag.

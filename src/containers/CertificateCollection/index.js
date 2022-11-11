@@ -1,6 +1,5 @@
 import { getTemplates } from "../../api/TemplateAPI";
 import Button from "../../components/Button";
-import Header from "../../components/Header/Header";
 import Thumbnail from "../../components/Thumbnail";
 import { setTemplates } from "../../features/template/templateSlice";
 import "./index.css";
@@ -20,10 +19,19 @@ const CertificateCollection = () => {
     navigate("/upload");
   };
 
+  const showTemplates = () => {
+    try {
+      templates.map((template, index) => {
+        return <Thumbnail key={index} src={template.template_url} />;
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   React.useEffect(() => {
     if (!fetchedTempaltes) {
       getTemplates().then((res) => {
-        console.log(res);
         dispatch(setTemplates(res.templates));
         setFetchedTemplates(true);
       });
@@ -32,8 +40,6 @@ const CertificateCollection = () => {
 
   return (
     <>
-      <Header title="Certificate Templates" />
-
       <div className="col-cert-container">
         <div className="col-cert-upload-btn">
           <Button text="Upload Certificate Template" onClick={onClick}>
@@ -44,11 +50,7 @@ const CertificateCollection = () => {
           </Button>
         </div>
 
-        <div className="col-cert-thumbnail-container">
-          {templates.map((template, index) => {
-            return <Thumbnail key={index} src={template.template_url} />;
-          })}
-        </div>
+        <div className="col-cert-thumbnail-container">{showTemplates()}</div>
       </div>
     </>
   );

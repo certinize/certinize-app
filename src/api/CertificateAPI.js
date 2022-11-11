@@ -7,7 +7,7 @@ const getCert = async (requestId) => {
 };
 
 const generateCert = async (ecert) => {
-  return await post(ecert, CERTIFICATES);
+  return await post(CERTIFICATES, ecert);
 };
 
 export { getCert, generateCert };

@@ -1,4 +1,3 @@
-import Header from "../../components/Header/Header";
 import DateSelection from "../DateSelection";
 import RecipientTable from "../RecipientTable";
 import TemplateEditor from "../TemplateEditor";
@@ -42,7 +41,6 @@ const reducer = (state = initialState, action) => {
 
 const CertificateIssuance = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  const [headerTitle, setHeaderTitle] = React.useState("Select Date");
 
   // Helper function to allow components to dispatch multiple actions at once.
   const actionController = (action) => {
@@ -50,17 +48,14 @@ const CertificateIssuance = () => {
       case "toRecipientTable":
         dispatch({ type: "SELECT_DATE" });
         dispatch({ type: "ADD_RECIPIENT" });
-        setHeaderTitle("Add Recipient");
         break;
       case "toTemplateSelection":
         dispatch({ type: "ADD_RECIPIENT" });
         dispatch({ type: "SELECT_TEMPLATE" });
-        setHeaderTitle("Choose Template");
         break;
       case "toTemplateEditor":
         dispatch({ type: "SELECT_TEMPLATE" });
         dispatch({ type: "EDIT_TEMPLATE" });
-        setHeaderTitle("Edit Template");
         break;
       default:
         break;
@@ -85,7 +80,6 @@ const CertificateIssuance = () => {
 
   return (
     <div>
-      <Header title={headerTitle} />
       <div className="content-body">{viewController()}</div>
     </div>
   );

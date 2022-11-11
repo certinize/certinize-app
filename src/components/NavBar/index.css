@@ -5,70 +5,37 @@
 }
 
 .navbar {
-  position: fixed;
   z-index: 4;
   left: 0;
   right: 0;
   top: 0;
   background-color: #1c3843;
+  justify-content: space-evenly;
 }
 
-
- .navbar {
-	position: fixed;
-	z-index: 4;
-	left: 0;
-	right: 0;
-	top: 0;
-	background-color: #1C3843;
-}
 .navbar-logo {
-	float: left;
-	display: flex;
-	padding-left: 25vh;
-	align-items: center;
-	font-size: 24px;
-	color: #fff;
-  	gap: 10px;
+  width: 50%;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+  gap: 0.625rem;
+  text-decoration: none;
 }
 
-.navbar-logo img{
+.navbar-logo img {
   height: auto;
-  width: 40px;
-}
- .navbar-link {
-	padding: 0;
-	margin: 0 15vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
- .navbar-link li{
-	list-style: none;
-	display: flex;
-	align-items: center;;
-}
- .navbar-link a {
-	display: flex;
-	padding: 1rem;
-	font-size: 1rem;
-	font-weight: bold;
-	color: #fff;
-	text-decoration: none;
-  	margin-left: 20px;
-	border-radius: 10px;
-	text-align: center;
-  
-}
- .navbar-link li a:hover{
-  background-color: white;
-  color: #1C3843;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: -10px;
+  width: 2.5rem;
 }
 
- .user-profile{
+.navbar-logo:hover {
+  cursor: pointer;
+  color: #fff;
+}
+
+.user-profile {
   display: flex;
   padding: 1.25rem;
   align-items: center;
@@ -83,20 +50,16 @@
 }
 
 .navbar-link {
+  width: 50%;
   padding: 0;
   margin: 0;
-  width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.navbar-link li {
   list-style: none;
-  transition: 0.3s;
 }
 
-.navbar-link a {
+.navbar-link-a {
   display: flex;
   padding: 1rem;
   font-size: 1rem;
@@ -110,11 +73,14 @@
   transition: 0.3s;
 }
 
-.navbar-link li a:hover {
+.navbar-link-li {
+  list-style: none;
+}
+
+.navbar-link-a:hover {
   background-color: white;
   color: #1c3843;
   font-weight: bold;
-  transition: 0.3s;
 }
 
 .user-icon {
@@ -152,7 +118,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 48rem) {
   .logo {
     float: none;
     width: auto;

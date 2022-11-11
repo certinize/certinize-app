@@ -7,7 +7,7 @@ const authSolanaUser = async (pubkey) => {
 };
 
 const verifyUser = async (data) => {
-  return await post(data, USERS);
+  return await post(USERS, data);
 };
 
 export { authSolanaUser, verifyUser };

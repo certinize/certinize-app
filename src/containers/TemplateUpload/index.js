@@ -1,6 +1,5 @@
 import { createTemplate } from "../../api/TemplateAPI";
 import Button from "../../components/Button";
-import Header from "../../components/Header/Header";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
@@ -92,7 +91,6 @@ const TemplateUpload = () => {
 
   return (
     <>
-      <Header title="Upload Certificate Template" />
       <div className="upload-cert-content">
         <div className="upload-cert-button-set">
           <div className="upload-cert-upload-btn">

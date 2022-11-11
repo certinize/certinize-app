@@ -1,5 +1,4 @@
 import Button from "../../components/Button";
-import Header from "../../components/Header/Header";
 import avatar from "./default_avatar.png";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,13 +27,10 @@ const ProfilePage = () => {
 
   React.useEffect(() => {
     document.title = "Profile";
-
-    console.log(verification);
   }, []);
 
   return (
     <>
-      <Header title="Issuer Profile" />
       <div className="main">
         <div className="user">
           <div className="profile-page-avatar-container">

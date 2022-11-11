@@ -3,7 +3,7 @@ import { getPath, post } from ".";
 const CONFIGURATIONS = "configurations";
 
 export async function createTemplateConfig(config) {
-  return await post(config, CONFIGURATIONS);
+  return await post(CONFIGURATIONS, config);
 }
 
 export async function getTemplateConfig(uuid) {
