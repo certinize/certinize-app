@@ -23,12 +23,11 @@ const DateSelection = ({ actionController }) => {
   return (
     <div className="container justify-content-center align-items-center d-flex flex-column my-4">
       <div className={`${styles.selectDateBtnContainer} align-self-end`}>
-        <Button styleType="danger" text="Cancel">
-          Cancel
-        </Button>
-        <Button styleType="primary" text="Next" onClick={handleContinue}>
-          Continue
-        </Button>
+        <div className="w-50">
+          <Button styleType="primary" text="Next" onClick={handleContinue}>
+            Continue
+          </Button>
+        </div>
       </div>
       <div className={`${styles.selectDateContent}`}>
         <div className="form-group w-50">

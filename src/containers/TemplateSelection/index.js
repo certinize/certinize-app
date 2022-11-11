@@ -10,8 +10,10 @@ import { PropTypes } from "prop-types";
 import React from "react";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const TemplateSelection = ({ actionController }) => {
+  const navigate = useNavigate();
   const templates = useSelector((state) => state.template.templates);
   const selectedTemplate = useSelector(
     (state) => state.template.selectedTemplate
@@ -68,7 +70,11 @@ const TemplateSelection = ({ actionController }) => {
     <div className="container d-flex flex-column my-4">
       <div className="select-template-button-set">
         <div className="select-template-button-set-content">
-          <Button styleType="danger" text="Cancel">
+          <Button
+            styleType="danger"
+            text="Cancel"
+            onClick={() => window.location.reload()}
+          >
             Cancel
           </Button>
           <Button

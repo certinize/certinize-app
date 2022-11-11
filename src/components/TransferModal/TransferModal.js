@@ -9,10 +9,10 @@ export default function TransferModal({ open, onClose }) {
     <div id="certinizeModal" className="overlay">
       <div className="container">
         <p className="definition">
-          Transfer Certificate to  Recipients?
+          resetIssuance Certificate to  Recipients?
         </p>
         <div className="buttonBtn">
-          <button className="transferbtn">Transfer</button>
+          <button className="transferbtn">Issue</button>
           <button className="cancelbtn" onClick={onClose}>
             Cancel
           </button>

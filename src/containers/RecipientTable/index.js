@@ -65,7 +65,7 @@ const RecipientTable = ({ actionController }) => {
 
   const handleContinue = () => {
     if (recipientList.length === 0) {
-      alert("Please fill in all the fields");
+      alert("Please add at least one (1) recipient to the table");
       return;
     }
 
@@ -84,7 +84,11 @@ const RecipientTable = ({ actionController }) => {
   return (
     <div className="container d-flex flex-column my-4">
       <div className="recipient-table-button-set">
-        <Button styleType="danger" text="Cancel">
+        <Button
+          styleType="danger"
+          text="Cancel"
+          onClick={() => window.location.reload()}
+        >
           Cancel
         </Button>
         <Button onClick={handleContinue} text="Continue">

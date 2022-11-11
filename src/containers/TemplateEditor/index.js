@@ -1,15 +1,10 @@
-/* eslint-disable no-unused-vars */
 import { getCert, generateCert } from "../../api/CertificateAPI";
 import { createTemplateConfig } from "../../api/ConfigurationAPI";
 import { getAllFonts } from "../../api/FontAPI";
 import { getUnsignedMessage, makeIssuanceRequest } from "../../api/IssuanceAPI";
 import Button from "../../components/Button";
-import Modal from "../../components/Modal";
 import ToolCategory from "../../components/ToolCategory/ToolCategory";
-import {
-  resetIssuance,
-  overwriteRecipients,
-} from "../../features/issuance/issuanceSlice";
+import { resetIssuance } from "../../features/issuance/issuanceSlice";
 import { resetSelectedTemplate } from "../../features/template/templateSlice";
 import "./index.css";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -72,7 +67,6 @@ const TemplateEditor = ({ actionController }) => {
   const [datePosition, setDatePosition] = React.useState({ x: 0, y: 0 });
 
   // UI-related states
-  const [openModal, setOpenModal] = React.useState(false);
   const [templateUrl, setTemplateUrl] = React.useState("");
   const [hasTemplateSize, setHasTemplateSize] = React.useState(false);
 
@@ -194,7 +188,7 @@ const TemplateEditor = ({ actionController }) => {
     };
 
     makeIssuanceRequest(issuanceRequest)
-      .then((_response) => {
+      .then(() => {
         dispatch(resetSelectedTemplate());
         dispatch(resetIssuance());
         actionController("toSendIssueRequest");
@@ -223,7 +217,7 @@ const TemplateEditor = ({ actionController }) => {
       });
   };
 
-  const handleTransferClick = () => {
+  const handleIssueClick = () => {
     // setOpenModal(true);
     createIssuanceRequest();
   };
@@ -243,11 +237,15 @@ const TemplateEditor = ({ actionController }) => {
 
       createRoot(document.getElementById("btnContainer")).render(
         <>
-          <Button styleType="danger" text="Cancel">
+          <Button
+            styleType="danger"
+            text="Cancel"
+            onClick={() => window.location.reload()}
+          >
             Cancel
           </Button>
-          <Button onClick={handleTransferClick} text="Transfer">
-            Transfer
+          <Button onClick={handleIssueClick} text="Issue">
+            Issue
           </Button>
         </>
       );
@@ -379,100 +377,79 @@ const TemplateEditor = ({ actionController }) => {
   // TODO: Attach a tip on a draggable component, e.g, "Drag to move". Remove it on drag.
 
   return (
-    <>
-      <div className="certinize-modal" id="modal">
-        <Modal
-          open={openModal}
-          title="Issue Certificate"
-          onClose={() => setOpenModal(false)}
-        >
-          <div className="certinize-modal-body">
-            Distribute certificate to five (5) recipients?
-          </div>
-          <div className="modal-btn-group">
-            <div className="btn-group-col">
-              <Button styleType="danger" text="Cancel">
-                Cancel
-              </Button>
-              <Button
-                onClick={() => actionController("toSendIssueRequest")}
-                text="Transfer"
-              >
-                Transfer
-              </Button>
-            </div>
-          </div>
-        </Modal>
-      </div>
-      <div className="primary-container">
-        <div className="editor-container">
-          <div className="ecert-container">
-            <div id="templateBox">
-              <img src={templateUrl} id="templateImg" />
-              <Draggable
-                bounds="parent"
-                defaultPosition={{ x: 0, y: 0 }}
-                onStop={handleDragOnStop}
-              >
-                <div className="handle" ref={recipientName}>
-                  <div className="box__title">
-                    <p className="recipient-name">Maria Dela Cruz</p>
-                  </div>
+    <div className="primary-container">
+      <div className="editor-container">
+        <div className="ecert-container">
+          <div id="templateBox">
+            <img src={templateUrl} id="templateImg" />
+            <Draggable
+              bounds="parent"
+              defaultPosition={{ x: 0, y: 0 }}
+              onStop={handleDragOnStop}
+            >
+              <div className="handle" ref={recipientName}>
+                <div className="box__title">
+                  <p className="recipient-name">Maria Dela Cruz</p>
                 </div>
-              </Draggable>
-              <Draggable
-                bounds="parent"
-                defaultPosition={{ x: 0, y: 100 }}
-                onStop={handleDragOnStop}
-              >
-                <div className="handle" ref={date}>
-                  <div className="box__title">
-                    <p className="date">DD/MM/YYYY</p>
-                  </div>
-                </div>
-              </Draggable>
-            </div>
-          </div>
-          <div className="edit-template-action-area">
-            <div className="edit-template-btn-container" id="btnContainer">
-              <div className="edit-template-btn-content">
-                <Button onClick={generateImage} text="Next">
-                  Next
-                </Button>
               </div>
-            </div>
+            </Draggable>
+            <Draggable
+              bounds="parent"
+              defaultPosition={{ x: 0, y: 100 }}
+              onStop={handleDragOnStop}
+            >
+              <div className="handle" ref={date}>
+                <div className="box__title">
+                  <p className="date">DD/MM/YYYY</p>
+                </div>
+              </div>
+            </Draggable>
           </div>
         </div>
-        <div className="tool-menu" id="toolMenu">
-          <ToolCategory
-            label={"Recipient Name"}
-            first={fontStyles}
-            second={FONT_SIZES}
-            styleDefaultValue={FONT_STYLE_DEFAULT}
-            sizeDefaultValue={FONT_SIZE_DEFAULT}
-            firstCallback={(option) => {
-              setNameFontStyle(option.value);
-            }}
-            secondCallback={(option) => {
-              setNameFontSize(option.value);
-            }}
-          />
-          <ToolCategory
-            label={"Date"}
-            first={fontStyles}
-            second={FONT_SIZES}
-            styleDefaultValue={FONT_STYLE_DEFAULT}
-            sizeDefaultValue={FONT_SIZE_DEFAULT}
-            firstCallback={(option) => {
-              setDateFontStyle(option.value);
-            }}
-            secondCallback={(option) => {
-              setDateFontSize(option.value);
-            }}
-          />
+        <div className="edit-template-action-area">
+          <div className="edit-template-btn-container" id="btnContainer">
+            <Button
+              text="Cancel"
+              styleType="danger"
+              onClick={() => window.location.reload()}
+            >
+              Cancel
+            </Button>
+            <Button text="Next" onClick={generateImage}>
+              Next
+            </Button>
+          </div>
         </div>
       </div>
-    </>
+      <div className="tool-menu" id="toolMenu">
+        <ToolCategory
+          label={"Recipient Name"}
+          first={fontStyles}
+          second={FONT_SIZES}
+          styleDefaultValue={FONT_STYLE_DEFAULT}
+          sizeDefaultValue={FONT_SIZE_DEFAULT}
+          firstCallback={(option) => {
+            setNameFontStyle(option.value);
+          }}
+          secondCallback={(option) => {
+            setNameFontSize(option.value);
+          }}
+        />
+        <ToolCategory
+          label={"Date"}
+          first={fontStyles}
+          second={FONT_SIZES}
+          styleDefaultValue={FONT_STYLE_DEFAULT}
+          sizeDefaultValue={FONT_SIZE_DEFAULT}
+          firstCallback={(option) => {
+            setDateFontStyle(option.value);
+          }}
+          secondCallback={(option) => {
+            setDateFontSize(option.value);
+          }}
+        />
+      </div>
+    </div>
   );
 };
 

@@ -61,7 +61,8 @@ const NavBar = () => {
               onClick={handleOnclick}
               className="navbar-link-a"
             >
-              <BiTransfer className="navbar-icon" /> Transfer
+              <BiTransfer className="navbar-icon" />
+              Issuance
             </Link>
           </li>
           <li className="navbar-link-li">
@@ -71,7 +72,7 @@ const NavBar = () => {
               className="navbar-link-a"
             >
               <FaCertificate className="navbar-icon" />
-              Certificates
+              Certificate Template
             </Link>
           </li>
           <Dropdown>

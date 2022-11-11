@@ -6,9 +6,9 @@ const VerificationModal = ({ open, onClose }) => {
   return (
     <div className="overlay">
       <div className="container">
-        <p className="definition">Transfer Certificate to (1) Recipients?</p>
+        <p className="definition">Issue Certificate to (1) Recipients?</p>
         <div className="buttonBtn">
-          <button className="transferbtn">Transfer</button>
+          <button className="transferbtn">Issue</button>
           <button className="cancelbtn" onClick={onClose}>
             Cancel
           </button>

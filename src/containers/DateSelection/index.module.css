@@ -15,6 +15,7 @@
 .selectDateBtnContainer {
   display: flex;
   align-self: flex-end;
+  justify-content: flex-end;
   gap: 0.625rem;
   width: 16rem;
   height: 4rem;

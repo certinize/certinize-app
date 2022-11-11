@@ -8,8 +8,10 @@ import {
   AiFillDelete,
   AiOutlineUpload,
 } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const TemplateUpload = () => {
+  const navigate = useNavigate();
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [toUpload, setToUpload] = useState([]);
 
@@ -90,72 +92,71 @@ const TemplateUpload = () => {
   }, [toUpload]);
 
   return (
-    <>
-      <div className="upload-cert-content">
-        <div className="upload-cert-button-set">
-          <div className="upload-cert-upload-btn">
-            <Button text="Upload Selected" onClick={uploadSelectedFiles}>
-              <div className="upload-cert-upload-btn-content">
-                <AiOutlineUpload />
-                <span>Upload Selected</span>
-              </div>
-            </Button>
-          </div>
-          <div className="upload-cert-cancel-btn">
-            <Button text="Cancel" styleType="danger">
-              Cancel
-            </Button>
-          </div>
+    <div className="container justify-content-center align-items-center d-flex flex-column my-4">
+      <div className="upload-cert-button-set">
+        <div className="upload-cert-upload-btn">
+          <Button text="Upload Selected" onClick={uploadSelectedFiles}>
+            <div className="upload-cert-upload-btn-content">
+              <AiOutlineUpload />
+              <span>Upload Selected</span>
+            </div>
+          </Button>
         </div>
-        <div className="container mt-5 d-flex justify-content-center">
-          <label className="upload-container" id="uploadContainer">
-            <div
-              id="dropEcertTemplate"
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-            >
-              <div className="dashed-line">
-                <div className="upload-btn">
-                  <div className="upload-cert-instruction-btn">
-                    <AiOutlineFileAdd />
-                    <span>Select files / Drop files here</span>
-                    <input
-                      className="upload-cert-input-file"
-                      type="file"
-                      name="file"
-                      onChange={onSelectFile}
-                      accept="image/png, image/jpeg, image/webp"
-                      multiple
-                    />
-                  </div>
+        <div className="upload-cert-cancel-btn">
+          <Button
+            text="Cancel"
+            styleType="danger"
+            onClick={() => navigate("/certificate")}
+          >
+            Cancel
+          </Button>
+        </div>
+      </div>
+      <div className="container mt-5 d-flex justify-content-center">
+        <label className="upload-container" id="uploadContainer">
+          <div
+            id="dropEcertTemplate"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+          >
+            <div className="dashed-line">
+              <div className="upload-btn">
+                <div className="upload-cert-instruction-btn">
+                  <AiOutlineFileAdd />
+                  <span>Select files / Drop files here</span>
+                  <input
+                    className="upload-cert-input-file"
+                    type="file"
+                    name="file"
+                    onChange={onSelectFile}
+                    accept="image/png, image/jpeg, image/webp"
+                    multiple
+                  />
                 </div>
               </div>
             </div>
-          </label>
-        </div>
-
-        <div className="file-preview">
-          {selectedFiles &&
-            selectedFiles.map((file) => {
-              return (
-                <div key={file} className="file-array">
-                  <img
-                    className="certificate-file"
-                    src={file}
-                    alt="Certificate Template"
-                  />
-                  <button
-                    className="delete"
-                    onClick={() => deleteHandler(file)}
-                  >
-                    <AiFillDelete className="delete-icon" />
-                  </button>
-                </div>
-              );
-            })}
-        </div>
+          </div>
+        </label>
       </div>
-    </>
+
+      <div className="file-preview">
+        {selectedFiles &&
+          selectedFiles.map((file) => {
+            return (
+              <div key={file} className="file-array">
+                <img
+                  className="certificate-file"
+                  src={file}
+                  alt="Certificate Template"
+                />
+                <button className="delete" onClick={() => deleteHandler(file)}>
+                  <AiFillDelete className="delete-icon" />
+                </button>
+              </div>
+            );
+          })}
+      </div>
+    </div>
   );
 };
 

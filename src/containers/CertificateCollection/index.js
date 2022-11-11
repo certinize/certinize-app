@@ -39,20 +39,18 @@ const CertificateCollection = () => {
   });
 
   return (
-    <>
-      <div className="col-cert-container">
-        <div className="col-cert-upload-btn">
-          <Button text="Upload Certificate Template" onClick={onClick}>
-            <div className="col-cert-upload-btn-content">
-              <AiOutlineUpload />
-              <span>Upload Certificate Template</span>
-            </div>
-          </Button>
-        </div>
-
-        <div className="col-cert-thumbnail-container">{showTemplates()}</div>
+    <div className="container justify-content-center align-items-center d-flex flex-column my-4">
+      <div className="col-cert-upload-btn">
+        <Button text="Upload Certificate Template" onClick={onClick}>
+          <div className="col-cert-upload-btn-content">
+            <AiOutlineUpload />
+            <span>Upload Certificate Template</span>
+          </div>
+        </Button>
       </div>
-    </>
+
+      <div className="col-cert-thumbnail-container">{showTemplates()}</div>
+    </div>
   );
 };
 

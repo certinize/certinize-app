@@ -8,6 +8,7 @@
 }
 
 .col-cert-upload-btn {
+  height: 4rem;
   width: 18.75rem;
   align-self: flex-end;
 }
